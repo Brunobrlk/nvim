@@ -1,0 +1,116 @@
+local opt = vim.opt
+local g = vim.g
+
+-- General
+opt.compatible = false      -- Behave like Neovim, not Vi
+opt.encoding = "utf-8"      -- Set default encoding to UTF-8
+opt.fileencoding = "utf-8"  -- File encoding
+opt.backspace = "indent,eol,start" -- Allow backspace over anything
+opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions" -- From your config
+
+-- UI Options
+opt.conceallevel = 2        -- Hide special characters (e.g., Markdown formatting)
+opt.laststatus = 3          -- Always show the status line (nvim-lualine)
+opt.pumheight = 10          -- Completion pop-up menu height
+
+-- Folding
+opt.foldmethod = "expr"     -- Use expression for folding
+opt.foldexpr = "nvim_treesitter#foldexpr()" -- Treesitter-based folding
+opt.foldcolumn = "1"        -- Show a small fold column
+opt.foldenable = true       -- Enable folding by default
+opt.foldlevelstart = 99     -- Start with no folds open
+opt.foldnestmax = 10        -- Maximum nesting of folds
+
+-- Search
+opt.hlsearch = true         -- Highlight search results
+opt.incsearch = true        -- Incremental search
+
+-- Performance
+opt.lazyredraw = true       -- Don't redraw while executing macros
+opt.loadplugins = true
+opt.display = "lastline"
+
+
+-- Line numbers
+opt.number = true           -- Show line numbers
+opt.relativenumber = false   -- Show relative line numbers
+
+-- Cursor & scrolling
+opt.cursorline = true       -- Highlight current line
+opt.scrolloff = 8           -- Lines above/below cursor to keep visible
+opt.sidescrolloff = 8       -- Columns left/right of cursor to keep visible
+
+-- Wrapping
+opt.wrap = true             -- Wrap long lines (from your config)
+opt.linebreak = true
+
+-- Mouse
+opt.mouse = "a"
+
+-- Colors
+g.have_nerd_font = true
+opt.termguicolors = true
+opt.signcolumn = "yes"      -- Always show the sign column (for LSP, gitigns, etc.)
+
+-- Clipboard
+opt.clipboard = "unnamedplus" -- Sync with system clipboard
+
+-- Identation
+opt.tabstop = 4             -- A tab character consumes 4 spaces
+opt.shiftwidth = 4          -- Amount of space to indent in (e.g., for autoindent, <<, >>)
+opt.expandtab = true        -- Use spaces instead of tabs
+opt.softtabstop = 4
+opt.smartindent = true      -- Smart indent (from your config)
+opt.autoindent = true       -- Auto indent new lines (from your config)
+
+-- Searching
+opt.ignorecase = true       -- Case-insensitive search
+opt.smartcase = true        -- Case-sensitive search if uppercase letters are used
+opt.hlsearch = true
+opt.incsearch = true
+
+-- Splits
+opt.splitbelow = true       -- New splits open below current window
+opt.splitright = true       -- New vertical splits open to the right
+
+-- Undo/Backup
+opt.undofile = true         -- Enable persistent undo
+opt.swapfile = false        -- Don't use swapfiles
+opt.backup = false
+opt.writebackup = false
+
+-- Performance
+opt.updatetime = 250        -- Faster completion (ms to wait for cursor hold)
+opt.timeoutlen = 400        -- Duration for key sequence to complete
+opt.redrawtime = 1500
+
+-- cmp
+opt.completeopt = { "menu", "menuone", "noselect" }
+
+-- whitespace format
+opt.list = true
+opt.listchars = {
+    extends = "→",
+    precedes = "←",
+    tab = "  ",
+    trail = "·",
+    nbsp = "␣",
+}
+
+opt.confirm = true   -- confirm before closing unsaved buffers
+opt.hidden = true    -- Allow unsaved buffers to be hidden
+opt.cmdheight = 1    -- Command line height
+opt.showmode = false -- Don't show -- INSERT -- etc. in the command line. statusline handles it
+opt.showcmd = false
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldenable = false
+
+-- Global Variables (g:)
+g.bullets_enable_in_empty_buffers = 0 -- From your config
+g.bullets_checkbox_markers = " ---x" -- From your config
+g.mkdp_theme = 'light' -- From your config
+g.mkdp_auto_close = 0 -- From your config
+g.mkdp_combine_preview = 1 -- From your config
+g.mkdp_combine_preview_auto_refresh = 1 -- From your config
+g.suda_smart_edit = 1 -- From your config
