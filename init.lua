@@ -16,18 +16,22 @@ rtp:prepend(lazypath)
 
 require("lazy").setup({
 	require("plugins.autopairs"),
+	require("plugins.blink"),
 	require("plugins.bufferline"),
 	require("plugins.bufremove"),
-	require("plugins.cmp"),
+	-- require("plugins.cmp"), Using blink
 	require("plugins.colorscheme"),
 	require("plugins.comment"),
 	require("plugins.conform"),
 	require("plugins.gitsigns"),
 	require("plugins.illuminate"),
 	require("plugins.indent"),
+	require("plugins.lsp"),
 	require("plugins.lualine"),
 	require("plugins.mason"),
+	require("plugins.move"),
 	require("plugins.neotree"),
+	require("plugins.telescope"),
 	require("plugins.toggleterm"),
 	require("plugins.treesitter"),
 	require("plugins.whichkey"),

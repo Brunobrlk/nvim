@@ -8,7 +8,11 @@ map({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 local opts = { noremap = true, silent = true }
 
 local function nmap(lhs, rhs, desc)
-  map("n", lhs, rhs, vim.tbl_extend("force", opts, { desc = desc }))
+	map("n", lhs, rhs, vim.tbl_extend("force", opts, { desc = desc }))
+end
+
+local function vmap(lhs, rhs, desc)
+	map("v", lhs, rhs, vim.tbl_extend("force", opts, { desc = desc }))
 end
 
 nmap("<C-k>", "<cmd>wincmd k<cr>", "Window up")
