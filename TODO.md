@@ -19,7 +19,6 @@
 
 - [x] nvim-telescope/telescope.nvim Find, Filter, Preview, Pick. All lua, all the time. optional
 - [x] nvim-telescope/telescope-fzf-native.nvim FZF sorter for telescope written in c
-- [ ] ahmedkhalf/project.nvim The superior project management solution for neovim optional
 
 - [x] hrsh7th/nvim-cmp A completion plugin for neovim coded in Lua.
 - [x] hrsh7th/cmp-nvim-lsp nvim-cmp source for neovim builtin LSP client
@@ -43,20 +42,18 @@
 - [x] MasonToolInstaller
 - [x] Catppuccin
 - [x] cmp-cmdline
-- [ ] Bookmarks
-- [ ] Flutter
+- [x] venv-selector
+- [x] vim-surround 0.6ms  start
+- [x] nvim-autopairs 13.44ms  Inse
+- [x] vim-repeat 0.25ms  vim-surro
 - [ ] suda.vim 0.38ms  start
-- [ ] venv-selector
-- [ ] auto-session
-- [ ] vim-surround 0.6ms  start
-- [ ] bullets.vim 1.92ms  markdown
-- [ ] diffview.nvim 1.33ms  start
+- [x] auto-session
+- [ ] Flutter
+- [x] bullets.vim 1.92ms  markdown
 - [ ] markdown-preview.nvim 0.74ms
-- [ ] nvim-autopairs 13.44ms  Inse
+- [ ] diffview.nvim 1.33ms  start
 - [ ] nvim-colorizer.lua 2.39ms  V
-- [ ] venv-selector.nvim 14.71ms 
 - [ ] vim-fugitive 1.03ms  start
-- [ ] vim-repeat 0.25ms  vim-surro
 - [ ] vim-tmux-navigator 0.49ms  s
 
 - [ ] nui.nvim 0.38ms  noice.nvim
@@ -65,20 +62,34 @@
 - [ ] nvim-navic 0.88ms  User File
 - [ ] lsp_signature.nvim 4.11ms  V
 - [ ] bigfile.nvim 1.45ms  BufRead
-- [ ] Lint
-- [ ] nvim-lint 0.04ms 󰢱 lint  use
+- [ ] Lint / nvim-lint 0.04ms 󰢱 lint
 - [ ] project.nvim 0.88ms 󰢱 telesco
 - [ ] telescope-project.nvim 0.04ms
 - [ ] nvim-web-devicons 0.16ms 󰢱 nv
 - [ ] plenary.nvim 0.13ms 󰢱 plenary
 - [ ] friendly-snippets 0.35ms  Lu
+- [ ] Bookmarks
+      function M.setup()
+      require("bookmarks").setup({
+      save_file = vim.fn.expand("$XDG_CONFIG_HOME/nvim-bookmarks"), -- Changed to nvim-bookmarks
+      keywords = {
+      ["@t"] = "☑️ ", -- mark annotation startswith @t ,signs this icon as `Todo`
+      ["@w"] = "⚠️ ", -- mark annotation startswith @w ,signs this icon as `Warn`
+      ["@f"] = "⛏ ", -- mark annotation startswith @f ,signs this icon as `Fix`
+      ["@n"] = " ", -- mark annotation startswith @n ,signs this icon as `Note`
+      },
+      })
+      end
 
 # Later
 
 - [x] Fix neotree last item identation
 - [x] Add Move line using alt+j/k
-- [ ] Fix: neotree close empty folder
-- [ ] Add gitsigns naming suggestions and shortcuts
+- [ ] UX: neotree close empty folder
+- [ ] Add: gitsigns naming suggestions and shortcuts
+- [ ] Finish: telescope config
+- [ ] UX: Use w to navigate instead of a random command
+- [ ] Add: Shortcut to close all buffers left/right space+b then h/l
 
 # LunarVim Don't use
 

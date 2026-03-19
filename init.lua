@@ -15,22 +15,22 @@ local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
 require("lazy").setup({
-	require("plugins.autopairs"),
 	require("plugins.blink"),
 	require("plugins.bufferline"),
-	require("plugins.bufremove"),
 	-- require("plugins.cmp"), Using blink
 	require("plugins.colorscheme"),
 	require("plugins.comment"),
 	require("plugins.conform"),
+	require("plugins.core"),
 	require("plugins.gitsigns"),
 	require("plugins.illuminate"),
-	require("plugins.indent"),
 	require("plugins.lsp"),
 	require("plugins.lualine"),
+	require("plugins.markdown"),
 	require("plugins.mason"),
-	require("plugins.move"),
 	require("plugins.neotree"),
+	require("plugins.pyvenv"),
+	require("plugins.sessions"),
 	require("plugins.telescope"),
 	require("plugins.toggleterm"),
 	require("plugins.treesitter"),

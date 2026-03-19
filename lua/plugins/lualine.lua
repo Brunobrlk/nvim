@@ -3,12 +3,13 @@ return {
 	event = "VeryLazy",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
+		local avd = require("scripts.nvim_android_device")
 		require("lualine").setup({
 			options = {
-				icons_enabled = true,
 				theme = "auto", -- or your desired theme
-				component_separators = { left = "", right = "" },
-				section_separators = { left = "", right = "" },
+				icons_enabled = true,
+				section_separators = { left = "", right = "" },
+				component_separators = { left = "", right = "" },
 				disabled_filetypes = {
 					statusline = {},
 					winbar = {},
@@ -20,18 +21,15 @@ return {
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = { "branch", "diff", "diagnostics" },
-				lualine_c = { { "filename", path = 1 } },
-				lualine_x = { "encoding", "fileformat", "filetype" },
-				lualine_y = { "progress" },
-				lualine_z = { "location" },
-			},
-			inactive_sections = {
-				lualine_a = {},
-				lualine_b = {},
-				lualine_c = { { "filename", path = 1 } },
-				lualine_x = { "location" },
+				lualine_c = { "filetype" },
+				lualine_x = {
+					"searchcount",
+					avd.android_model,
+					"encoding",
+					"lsp_status",
+				},
+				lualine_z = { "progress", "location" },
 				lualine_y = {},
-				lualine_z = {},
 			},
 			tabline = {},
 			extensions = {},

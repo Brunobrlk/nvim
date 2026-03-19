@@ -9,21 +9,52 @@ return {
 	},
 	config = function()
 		require("telescope").setup({
-			-- defaults = {
-			--   mappings = {
-			--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-			--   },
-			-- pickers = {}
-			-- extensions = {
-			--     ['ui-select'] = {
-			--         require('telescope.themes').get_dropdown(),
-			--     },
-			-- },
+			defaults = {
+				layout_strategy = "horizontal",
+				layout_config = {
+					horizontal = {
+						preview_width = 0.67,
+						results_width = 0.33,
+						mirror = false,
+					},
+					width = 0.85,
+					height = 0.85,
+					preview_cutoff = 120,
+				},
+				winblend = 0,
+				path_display = { truncate = 3 },
+				file_ignore_patterns = {
+					"%.git",
+					"node_modules/",
+					"/generated/",
+				},
+
+				borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+			},
+			pickers = {
+				find_files = {
+					find_command = {
+						"fd",
+						"--type",
+						"f",
+						"--hidden",
+						"--exclude",
+						".git",
+						"--exclude",
+						"node_modules",
+						"--exclude",
+						"generated",
+						"--exclude",
+						".venv",
+					},
+				},
+			},
 		})
 
 		-- Enable Telescope extensions if they are installed
 		pcall(require("telescope").load_extension, "fzf")
 		pcall(require("telescope").load_extension, "ui-select")
+		-- pcall(require("telescope").load_extension, "flutter")
 
 		-- See `:help telescope.builtin`
 		local builtin = require("telescope.builtin")
