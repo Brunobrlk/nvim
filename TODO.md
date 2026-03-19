@@ -11,8 +11,8 @@
 - [x] neovim/nvim-lspconfig Quickstart configurations for the Nvim LSP client
 
 - [x] williamboman/mason-lspconfig.nvim Extension to mason.nvim that makes it easier to use lspconfig with mason.nvim
-- [ ] b0o/schemastore.nvim 🛍 JSON schemas for Neovim
-- [ ] folke/neodev.nvim 💻 Dev setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.
+- [x] b0o/schemastore.nvim 🛍 JSON schemas for Neovim
+- [x] folke/neodev.nvim 💻 Dev setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.
 
 - [x] williamboman/mason.nvim Easily install and manage LSP servers, DAP servers, linters, and formatters
 - [x] nvim-lua/plenary.nvim plenary: full; complete; entire; absolute; unqualified. All the lua functions I don't want to write twice.
@@ -38,6 +38,48 @@
 - [ ] mfussenegger/nvim-dap Debug Adapter Protocol client implementation for Neovim (>= 0.5) optional
 - [ ] rcarriga/nvim-dap-ui A UI for nvim-dap which provides a good out of the box configuration optional
 
+# Mine
+
+- [x] MasonToolInstaller
+- [x] Catppuccin
+- [x] cmp-cmdline
+- [ ] Bookmarks
+- [ ] Flutter
+- [ ] suda.vim 0.38ms  start
+- [ ] venv-selector
+- [ ] auto-session
+- [ ] vim-surround 0.6ms  start
+- [ ] bullets.vim 1.92ms  markdown
+- [ ] diffview.nvim 1.33ms  start
+- [ ] markdown-preview.nvim 0.74ms
+- [ ] nvim-autopairs 13.44ms  Inse
+- [ ] nvim-colorizer.lua 2.39ms  V
+- [ ] venv-selector.nvim 14.71ms 
+- [ ] vim-fugitive 1.03ms  start
+- [ ] vim-repeat 0.25ms  vim-surro
+- [ ] vim-tmux-navigator 0.49ms  s
+
+- [ ] nui.nvim 0.38ms  noice.nvim
+- [ ] dressing.nvim 0.8ms  flutter
+- [ ] noice.nvim 1.42ms  VeryLazy
+- [ ] nvim-navic 0.88ms  User File
+- [ ] lsp_signature.nvim 4.11ms  V
+- [ ] bigfile.nvim 1.45ms  BufRead
+- [ ] Lint
+- [ ] nvim-lint 0.04ms 󰢱 lint  use
+- [ ] project.nvim 0.88ms 󰢱 telesco
+- [ ] telescope-project.nvim 0.04ms
+- [ ] nvim-web-devicons 0.16ms 󰢱 nv
+- [ ] plenary.nvim 0.13ms 󰢱 plenary
+- [ ] friendly-snippets 0.35ms  Lu
+
+# Later
+
+- [x] Fix neotree last item identation
+- [x] Add Move line using alt+j/k
+- [ ] Fix: neotree close empty folder
+- [ ] Add gitsigns naming suggestions and shortcuts
+
 # LunarVim Don't use
 
 - [ ] goolord/alpha-nvim a lua powered greeter like vim-startify / dashboard-nvim optional
@@ -52,21 +94,3 @@
 - [ ] nvim-lua/popup.nvim [WIP] An implementation of the Popup API from vim in Neovim. Hope to upstream when complete
 - [ ] tamago324/nlsp-settings.nvim A plugin for setting Neovim LSP with JSON or YAML files
 - [ ] nvimtools/none-ls.nvim Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua.
-
-# Mine
-
-- [x] MasonToolInstaller
-- [x] Catppuccin
-- [x] cmp-cmdline
-- [ ] Bookmarks
-- [ ] Flutter
-- [ ] Lint
-- [ ] venv-selector
-- [ ] noice
-
-# Later
-
-- [x] Fix neotree last item identation
-- [x] Add Move line using alt+j/k
-- [ ] Fix: neotree close empty folder
-- [ ] Add gitsigns naming suggestions and shortcuts

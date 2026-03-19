@@ -25,6 +25,9 @@ return {
 					"bash-language-server", -- Renamed from 'bash-language-server'
 					"ktlint",
 					"ruff",
+                    "lua_ls",
+                    "yamlls",
+                    "jsonls",
 					"shfmt",
 					"xmlformatter",
 					"prettier", -- Common formatter, consider adding
