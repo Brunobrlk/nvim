@@ -50,7 +50,7 @@
 - [x] auto-session
 - [ ] Flutter
 - [x] bullets.vim 1.92ms  markdown
-- [ ] markdown-preview.nvim 0.74ms
+- [x] markdown-preview.nvim 0.74ms
 - [ ] diffview.nvim 1.33ms  start
 - [ ] nvim-colorizer.lua 2.39ms  V
 - [ ] vim-fugitive 1.03ms  start

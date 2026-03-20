@@ -20,13 +20,30 @@ return {
 			},
 			sections = {
 				lualine_a = { "mode" },
-				lualine_b = { "branch", "diff", "diagnostics" },
-				lualine_c = { "filetype" },
+				lualine_b = { "branch" },
+				lualine_c = {
+					"diff",
+					{
+						"diagnostics",
+						symbols = { error = " ", warn = " ", info = " ", hint = " " },
+					},
+					"filetype",
+				},
 				lualine_x = {
 					"searchcount",
 					avd.android_model,
 					"encoding",
-					"lsp_status",
+					{
+						"lsp_status",
+						icon = "", -- f013
+						symbols = {
+							spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }, -- Unicode symbols to cycle through for LSP progress
+							done = "✓", -- Standard unicode symbol for when LSP is done
+							separator = " ", -- Delimiter inserted between LSP names
+						},
+						ignore_lsp = {}, -- List of LSP names to ignore (e.g., `null-ls`):
+						show_name = true, -- Display the LSP name
+					},
 				},
 				lualine_z = { "progress", "location" },
 				lualine_y = {},

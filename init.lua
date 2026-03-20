@@ -30,7 +30,7 @@ require("lazy").setup({
 	require("plugins.mason"),
 	require("plugins.neotree"),
 	require("plugins.pyvenv"),
-	require("plugins.sessions"),
+	-- require("plugins.sessions"),
 	require("plugins.telescope"),
 	require("plugins.toggleterm"),
 	require("plugins.treesitter"),
