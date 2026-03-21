@@ -18,7 +18,6 @@ rtp:prepend(lazypath)
 require("lazy").setup({
 	require("plugins.blink"),
 	require("plugins.bufferline"),
-	-- require("plugins.cmp"), Using blink
 	require("plugins.colorscheme"),
 	require("plugins.conform"),
 	require("plugins.core"),
@@ -30,7 +29,6 @@ require("lazy").setup({
 	require("plugins.mason"),
 	require("plugins.neotree"),
 	require("plugins.pyvenv"),
-	-- require("plugins.sessions"),
 	require("plugins.telescope"),
 	require("plugins.toggleterm"),
 	require("plugins.treesitter"),

@@ -91,26 +91,26 @@
 - [ ] UX: Use w to navigate instead of a random command
 - [ ] Add: Shortcut to close all buffers left/right space+b then h/l
 - [ ] Fix: difference between formatting on lunarvim and neovim. One is using tabs or spaces
-- [ ] Shortcut ideas: Switch colorscheme: Toggle transparency/theme
-- [-] Refactor: Migrate mappings to SSOT keymaps
-    - [ ] blink
+- [ ] Shortcut ideas: Switch colorscheme: Toggle transparency/theme, markdown, mason, lsp, lazy, telescope, conform
+- [x] Refactor: Migrate mappings to SSOT keymaps
+    - [x] blink - internal only
     - [x] bufferline
     - [x] colorscheme
     - [x] comment
-    - [ ] conform - think about a keybinding
+    - [x] conform
     - [x] core
-    - [ ] gitsigns
-    - [ ] illuminate
+    - [x] gitsigns
+    - [x] illuminate
     - [x] lsp
-    - [ ] lualine
-    - [ ] markdown
-    - [ ] mason
-    - [ ] neotree
-    - [ ] pyvenv
-    - [ ] sessions
-    - [ ] telescope
-    - [ ] toggleterm
-    - [ ] treesitter
+    - [x] lualine
+    - [x] markdown
+    - [x] mason
+    - [x] neotree - internal only
+    - [x] pyvenv
+    - [x] sessions
+    - [x] telescope
+    - [x] toggleterm
+    - [x] treesitter - internal only
     - [x] whichkey
 
 # LunarVim Don't use

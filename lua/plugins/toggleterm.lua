@@ -34,15 +34,4 @@ return {
             end,
         },
     },
-
-    keys = {
-        { "<M-1>", "<cmd>1ToggleTerm direction=horizontal<CR>",             mode = "n" },
-        { "<M-1>", [[<C-\><C-n><cmd>1ToggleTerm direction=horizontal<CR>]], mode = "t" },
-
-        { "<M-2>", "<cmd>2ToggleTerm direction=vertical<CR>",               mode = "n" },
-        { "<M-2>", [[<C-\><C-n><cmd>2ToggleTerm direction=vertical<CR>]],   mode = "t" },
-
-        { "<M-3>", "<cmd>3ToggleTerm direction=float<CR>",                  mode = "n" },
-        { "<M-3>", [[<C-\><C-n><cmd>3ToggleTerm direction=float<CR>]],      mode = "t" },
-    },
 }

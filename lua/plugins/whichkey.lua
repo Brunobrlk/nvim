@@ -43,6 +43,7 @@ return {
 			{ "<leader>s", group = "Search" },
 			{ "<leader>l", group = "LSP" },
 			{ "<leader>P", group = "Python" },
+			{ "<leader>g", group = "Git" },
 			{ "<leader>r", group = "Session" },
 			{ "<leader>S", group = "Sudo" },
 			{ "<leader>t", group = "Telescope" },

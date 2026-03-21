@@ -18,6 +18,10 @@ local function vmap(lhs, rhs, desc, extra)
   map("v", lhs, rhs, opts(desc, extra))
 end
 
+local function tmap(lhs, rhs, desc, extra)
+  map("t", lhs, rhs, opts(desc, extra))
+end
+
 -- Disable space
 map({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
@@ -102,24 +106,6 @@ nmap("<leader>ft", "<cmd>FlutterDevTools<cr>", "Dev Tools")
 nmap("<leader>fx", "<cmd>FlutterLogClear<cr>", "Log Clear")
 
 -- ======================
--- Search
--- ======================
-nmap("<leader>sb", "<cmd>Telescope buffers<cr>", "Buffers")
-nmap("<leader>sc", "<cmd>Telescope commands<cr>", "Commands")
-nmap("<leader>sf", "<cmd>Telescope find_files<cr>", "Files")
-nmap("<leader>sh", "<cmd>Telescope help_tags<cr>", "Help")
-nmap("<leader>sH", "<cmd>Telescope highlights<cr>", "Highlight Groups")
-nmap("<leader>sk", "<cmd>Telescope keymaps<cr>", "Keymaps")
-nmap("<leader>sl", "<cmd>Telescope resume<cr>", "Last Picker")
-nmap("<leader>sM", "<cmd>Telescope man_pages<cr>", "Man Pages")
-nmap("<leader>sr", "<cmd>Telescope oldfiles<cr>", "Recent Files")
-nmap("<leader>sR", "<cmd>Telescope registers<cr>", "Registers")
-nmap("<leader>ss", "<cmd>Telescope lsp_document_symbols<cr>", "Symbols")
-nmap("<leader>st", "<cmd>Telescope live_grep<cr>", "Text")
-nmap("<leader>sw", "<cmd>Telescope grep_string<cr>", "Word")
-nmap("<leader>su", "<cmd>Telescope undo<cr>", "Undo History")
-
--- ======================
 -- Python
 -- ======================
 nmap("<leader>Pv", "<cmd>VenvSelect<cr>", "Venv select")
@@ -139,6 +125,33 @@ nmap("<leader>Sr", "<cmd>SudaRead<CR>", "Open with Sudo")
 -- ======================
 -- Telescope
 -- ======================
+
+-- ======================
+-- Search
+-- ======================
+nmap("<leader>sb", "<cmd>lua require('telescope.builtin').buffers()<CR>", { desc = "[S]earch [B]uffers" })
+nmap("<leader>sc", "<cmd>Telescope commands<cr>", "Commands")
+nmap("<leader>sd", "<cmd>lua require('telescope.builtin').diagnostics()<CR>", { desc = "[S]earch [D]iagnostics" })
+nmap("<leader>sf", "<cmd>lua require('telescope.builtin').find_files()<CR>", { desc = "[S]earch [F]iles" })
+nmap("<leader>sh", "<cmd>lua require('telescope.builtin').help_tags()<CR>", { desc = "[S]earch [H]elp" })
+nmap("<leader>sH", "<cmd>Telescope highlights<cr>", "Highlight Groups")
+nmap("<leader>sk", "<cmd>lua require('telescope.builtin').keymaps()<CR>", { desc = "[S]earch [K]eymaps" })
+nmap("<leader>sl", "<cmd>lua require('telescope.builtin').resume()<CR>", { desc = "[S]earch [L]ast Picker" })
+nmap("<leader>sM", "<cmd>Telescope man_pages<cr>", "Man Pages")
+nmap("<leader>sr", "<cmd>lua require('telescope.builtin').oldfiles()<CR>", { desc = '[S]earch Recent Files ("." for repeat)' })
+nmap("<leader>sR", "<cmd>Telescope registers<cr>", "Registers")
+nmap("<leader>ss", "<cmd>Telescope lsp_document_symbols<cr>", "Symbols")
+nmap("<leader>st", "<cmd>lua require('telescope.builtin').live_grep()<CR>", { desc = "[S]earch [T]ext" })
+nmap("<leader>sT", "<cmd>lua require('telescope.builtin').builtin()<CR>", { desc = "[S]earch [T]elescope" })
+nmap("<leader>sw", "<cmd>lua require('telescope.builtin').grep_string()<CR>", { desc = "[S]earch current [W]ord" })
+nmap("<leader>su", "<cmd>Telescope undo<cr>", "Undo History")
+
+nmap("<leader>sn", function()
+	require("telescope.builtin").find_files({
+		cwd = vim.fn.stdpath("config"),
+	})
+end, { desc = "[S]earch [N]eovim files" })
+
 nmap("<leader>tp", "<cmd>Telescope projects<CR>", "Recent Projects")
 nmap("<leader>tP", "<cmd>Telescope project<CR>", "Select Project")
 nmap("<leader>tn", "<cmd>NoiceTelescope<CR>", "Noice Messages")
@@ -161,6 +174,22 @@ nmap("<leader>yL", "<cmd>Trouble loclist toggle<cr>", "Location List")
 nmap("<leader>yQ", "<cmd>Trouble qflist toggle<cr>", "Quickfix List")
 nmap("<leader>ys", "<cmd>Trouble symbols toggle focus=false<cr>", "Symbols")
 nmap("<leader>yl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", "LSP References")
+
+-- ======================
+-- ToggleTerm
+-- ======================
+
+-- Terminal 1 (horizontal)
+nmap("<M-1>", "<cmd>1ToggleTerm direction=horizontal<CR>", "Terminal 1 (horizontal)")
+tmap("<M-1>", [[<C-\><C-n><cmd>1ToggleTerm direction=horizontal<CR>]], "Terminal 1 (horizontal)")
+
+-- Terminal 2 (vertical)
+nmap("<M-2>", "<cmd>2ToggleTerm direction=vertical<CR>", "Terminal 2 (vertical)")
+tmap("<M-2>", [[<C-\><C-n><cmd>2ToggleTerm direction=vertical<CR>]], "Terminal 2 (vertical)")
+
+-- Terminal 3 (float)
+nmap("<M-3>", "<cmd>3ToggleTerm direction=float<CR>", "Terminal 3 (float)")
+tmap("<M-3>", [[<C-\><C-n><cmd>3ToggleTerm direction=float<CR>]], "Terminal 3 (float)")
 
 -- ======================
 -- LSP (buffer-local)
