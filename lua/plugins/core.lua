@@ -1,14 +1,11 @@
 return {
 	"tpope/vim-surround",
 	"tpope/vim-repeat",
+	"numToStr/Comment.nvim",
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
 		config = true,
-	},
-	{
-		"nvim-mini/mini.nvim",
-		version = false,
 	},
 	{ "matze/vim-move" },
 	{

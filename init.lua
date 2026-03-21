@@ -1,5 +1,6 @@
 require("keymaps")
 require("options")
+require("autocommands")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -19,7 +20,6 @@ require("lazy").setup({
 	require("plugins.bufferline"),
 	-- require("plugins.cmp"), Using blink
 	require("plugins.colorscheme"),
-	require("plugins.comment"),
 	require("plugins.conform"),
 	require("plugins.core"),
 	require("plugins.gitsigns"),

@@ -90,6 +90,28 @@
 - [ ] Finish: telescope config
 - [ ] UX: Use w to navigate instead of a random command
 - [ ] Add: Shortcut to close all buffers left/right space+b then h/l
+- [ ] Fix: difference between formatting on lunarvim and neovim. One is using tabs or spaces
+- [ ] Shortcut ideas: Switch colorscheme: Toggle transparency/theme
+- [-] Refactor: Migrate mappings to SSOT keymaps
+    - [ ] blink
+    - [x] bufferline
+    - [x] colorscheme
+    - [x] comment
+    - [ ] conform - think about a keybinding
+    - [x] core
+    - [ ] gitsigns
+    - [ ] illuminate
+    - [x] lsp
+    - [ ] lualine
+    - [ ] markdown
+    - [ ] mason
+    - [ ] neotree
+    - [ ] pyvenv
+    - [ ] sessions
+    - [ ] telescope
+    - [ ] toggleterm
+    - [ ] treesitter
+    - [x] whichkey
 
 # LunarVim Don't use
 
