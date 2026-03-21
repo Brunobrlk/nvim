@@ -38,7 +38,8 @@ return {
 				max = 4,
 			},
 		},
-        spec = {
+		spec = {
+			{ "<leader>b", group = "Buffer" },
 			{ "<leader>f", group = "Flutter" },
 			{ "<leader>s", group = "Search" },
 			{ "<leader>l", group = "LSP" },
@@ -48,6 +49,6 @@ return {
 			{ "<leader>S", group = "Sudo" },
 			{ "<leader>t", group = "Telescope" },
 			{ "<leader>y", group = "Trouble" },
-        }
+		},
 	},
 }

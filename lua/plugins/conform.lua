@@ -1,26 +1,25 @@
 return {
 	"stevearc/conform.nvim",
-	event = { "BufWritePre" }, -- Load on write pre-hook
+	event = { "BufWritePre" },
 	config = function()
 		require("conform").setup({
 			formatters_by_ft = {
 				kotlin = { "ktlint" },
-				python = { "ruff", "black" }, -- Add black as an option
-				xml = { "xmlformatter" },
+				python = { "ruff" },
 				sh = { "shfmt" },
-				bash = { "shfmt" },
-				dart = { "dart_format" },
 				lua = { "stylua" },
-				json = { "prettier" }, -- Requires prettier via mason
+				xml = { "xmlformatter" },
+
+				json = { "prettier" },
 				markdown = { "prettier" },
 				javascript = { "prettier" },
 				typescript = { "prettier" },
-				css = { "prettier" },
 				html = { "prettier" },
+				css = { "prettier" },
 			},
 			format_on_save = {
 				timeout_ms = 500,
-				lsp_fallback = true,
+				lsp_fallback = false, -- IMPORTANT
 			},
 		})
 	end,

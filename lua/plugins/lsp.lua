@@ -4,7 +4,6 @@ return {
 		"mason-org/mason-lspconfig.nvim",
 		"b0o/schemastore.nvim",
 		"saghen/blink.cmp", -- Allows extra capabilities provided by blink.cmp
-		{ "folke/lazydev.nvim", ft = "lua" },
 		{ "j-hui/fidget.nvim", opts = {} }, -- Useful status updates for LSP.
 	},
 	config = function()
@@ -39,9 +38,6 @@ return {
 
 		local servers = { -- Enable the following language servers
 			lua_ls = {
-				-- cmd = { ... }, Override the default command used to start the server
-				-- filetypes = { ... }, Override the default list of associated filetypes for the server
-				-- capabilities = {}, Override fields in capabilities. Can be used to disable certain LSP features.
 				settings = { -- Override the default settings passed when initializing the server.
 					Lua = {
 						completion = {
@@ -52,6 +48,9 @@ return {
 				},
 			},
 			jsonls = {
+				-- cmd = { ... }, Override the default command used to start the server
+				-- filetypes = { ... }, Override the default list of associated filetypes for the server
+				-- capabilities = {}, Override fields in capabilities. Can be used to disable certain LSP features.
 				settings = {
 					json = {
 						schemas = require("schemastore").json.schemas(),
@@ -81,6 +80,12 @@ return {
 				function(server_name)
 					local server = servers[server_name] or {}
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+
+					-- ✅ Disable LSP formatting
+					server.on_attach = function(client, bufnr)
+						client.server_capabilities.documentFormattingProvider = false
+						client.server_capabilities.documentRangeFormattingProvider = false
+					end
 					require("lspconfig")[server_name].setup(server)
 				end,
 			},

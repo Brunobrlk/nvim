@@ -22,7 +22,7 @@ return {
 				{
 					filetype = "neo-tree",
 					text = "Explorer",
-					text_align = "center",
+					text_align = "center", -- test left
 					separator = true,
 				},
 			},

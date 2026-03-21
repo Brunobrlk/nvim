@@ -22,14 +22,14 @@ return {
 					preview_cutoff = 120,
 				},
 				winblend = 0,
-				path_display = { truncate = 3 },
+				path_display = { "truncate" },
 				file_ignore_patterns = {
 					"%.git",
 					"node_modules/",
 					"/generated/",
 				},
-
 				borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+				sorting_strategy = "ascending",
 			},
 			pickers = {
 				find_files = {
@@ -50,10 +50,9 @@ return {
 				},
 			},
 		})
-
 		-- Enable Telescope extensions if they are installed
 		pcall(require("telescope").load_extension, "fzf")
 		pcall(require("telescope").load_extension, "ui-select")
-		-- pcall(require("telescope").load_extension, "flutter")
-	end
+		pcall(require("telescope").load_extension, "flutter")
+	end,
 }

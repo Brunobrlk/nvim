@@ -2,7 +2,6 @@ local opt = vim.opt
 local g = vim.g
 
 -- General
-opt.compatible = false -- Behave like Neovim, not Vi
 opt.encoding = "utf-8" -- Set default encoding to UTF-8
 opt.fileencoding = "utf-8" -- File encoding
 opt.backspace = "indent,eol,start" -- Allow backspace over anything
@@ -17,7 +16,7 @@ opt.pumheight = 10 -- Completion pop-up menu height
 opt.foldmethod = "expr" -- Use expression for folding
 opt.foldexpr = "nvim_treesitter#foldexpr()" -- Treesitter-based folding
 opt.foldcolumn = "1" -- Show a small fold column
-opt.foldenable = true -- Enable folding by default
+opt.foldenable = false
 opt.foldlevelstart = 99 -- Start with no folds open
 opt.foldnestmax = 10 -- Maximum nesting of folds
 
@@ -26,7 +25,6 @@ opt.hlsearch = true -- Highlight search results
 opt.incsearch = true -- Incremental search
 
 -- Performance
-opt.lazyredraw = true -- Don't redraw while executing macros
 opt.loadplugins = true
 opt.display = "lastline"
 
@@ -56,14 +54,12 @@ opt.tabstop = 4 -- A tab character consumes 4 spaces
 opt.shiftwidth = 4 -- Amount of space to indent in (e.g., for autoindent, <<, >>)
 opt.expandtab = true -- Use spaces instead of tabs
 opt.softtabstop = 4
-opt.smartindent = true -- Smart indent (from your config)
+opt.smartindent = false -- Smart indent
 opt.autoindent = true -- Auto indent new lines (from your config)
 
 -- Searching
 opt.ignorecase = true -- Case-insensitive search
 opt.smartcase = true -- Case-sensitive search if uppercase letters are used
-opt.hlsearch = true
-opt.incsearch = true
 
 -- Splits
 opt.splitbelow = true -- New splits open below current window
@@ -100,13 +96,19 @@ opt.showmode = false -- Don't show -- INSERT -- etc. in the command line. status
 opt.showcmd = false
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
-opt.foldenable = false
 
--- Global Variables (g:)
-g.bullets_enable_in_empty_buffers = 0 -- From your config
-g.bullets_checkbox_markers = " ---x" -- From your config
-g.mkdp_theme = "light" -- From your config
-g.mkdp_auto_close = 0 -- From your config
-g.mkdp_combine_preview = 1 -- From your config
-g.mkdp_combine_preview_auto_refresh = 1 -- From your config
-g.suda_smart_edit = 1 -- From your config
+-- Filetype Additions
+vim.filetype.add({
+    filename = {
+        ["Fastfile"]       = "ruby",
+        ["Appfile"]        = "ruby",
+        ["Matchfile"]      = "ruby",
+        ["Gymfile"]        = "ruby",
+        ["Deliverfile"]    = "ruby",
+        ["Pluginfile"]     = "ruby",
+        ["Scanfile"]       = "ruby",
+        ["Screengrabfile"] = "ruby",
+        ["Snapfile"]       = "ruby",
+        ["Podfile"]        = "ruby", -- CocoaPods, bonus
+    },
+})

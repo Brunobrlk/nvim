@@ -46,23 +46,23 @@
 - [x] vim-surround 0.6ms  start
 - [x] nvim-autopairs 13.44ms  Inse
 - [x] vim-repeat 0.25ms  vim-surro
-- [ ] suda.vim 0.38ms  start
 - [x] auto-session
-- [ ] Flutter
 - [x] bullets.vim 1.92ms  markdown
 - [x] markdown-preview.nvim 0.74ms
+- [x] suda.vim 0.38ms  start
+- [x] Flutter
+- [x] Lint / nvim-lint 0.04ms 󰢱 lint
 - [ ] diffview.nvim 1.33ms  start
 - [ ] nvim-colorizer.lua 2.39ms  V
 - [ ] vim-fugitive 1.03ms  start
-- [ ] vim-tmux-navigator 0.49ms  s
 
+- [ ] vim-tmux-navigator 0.49ms  s
 - [ ] nui.nvim 0.38ms  noice.nvim
 - [ ] dressing.nvim 0.8ms  flutter
 - [ ] noice.nvim 1.42ms  VeryLazy
 - [ ] nvim-navic 0.88ms  User File
 - [ ] lsp_signature.nvim 4.11ms  V
 - [ ] bigfile.nvim 1.45ms  BufRead
-- [ ] Lint / nvim-lint 0.04ms 󰢱 lint
 - [ ] project.nvim 0.88ms 󰢱 telesco
 - [ ] telescope-project.nvim 0.04ms
 - [ ] nvim-web-devicons 0.16ms 󰢱 nv
@@ -85,13 +85,16 @@
 
 - [x] Fix neotree last item identation
 - [x] Add Move line using alt+j/k
+- [x] Add: gitsigns naming suggestions and shortcuts
+- [x] Add: Shortcut to close all buffers left/right space+b then h/l
+- [x] Fix: Move line visual mode
 - [ ] UX: neotree close empty folder
-- [ ] Add: gitsigns naming suggestions and shortcuts
+- [ ] UX: Flutter only on dart lsp or flutter projects
 - [ ] Finish: telescope config
+- [ ] Check: Ensure all and correct capabilities, diagnostics, clean mental model config(Lint, Format, LSP)
 - [ ] UX: Use w to navigate instead of a random command
-- [ ] Add: Shortcut to close all buffers left/right space+b then h/l
-- [ ] Fix: difference between formatting on lunarvim and neovim. One is using tabs or spaces
-- [ ] Shortcut ideas: Switch colorscheme: Toggle transparency/theme, markdown, mason, lsp, lazy, telescope, conform
+- [ ] Fix: difference between format on lunarvim vs neovim. One is using tabs or spaces
+- [ ] Shortcut ideas: Switch colorscheme: Toggle transparency/theme, markdown, mason, lsp, lazy, telescope, conform, del v-selection occurrences
 - [x] Refactor: Migrate mappings to SSOT keymaps
     - [x] blink - internal only
     - [x] bufferline

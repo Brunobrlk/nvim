@@ -14,6 +14,10 @@ local function nmap(lhs, rhs, desc, extra)
   map("n", lhs, rhs, opts(desc, extra))
 end
 
+local function imap(lhs, rhs, desc, extra)
+  map("i", lhs, rhs, opts(desc, extra))
+end
+
 local function vmap(lhs, rhs, desc, extra)
   map("v", lhs, rhs, opts(desc, extra))
 end
@@ -28,6 +32,8 @@ map({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 -- ======================
 -- General
 -- ======================
+imap("jk", "<ESC>", "Exit Insert Mode") -- Common, fast exit from insert mode
+
 nmap("<C-k>", "<cmd>wincmd k<cr>", "Window up")
 nmap("<C-j>", "<cmd>wincmd j<cr>", "Window down")
 nmap("<C-h>", "<cmd>wincmd h<cr>", "Window left")
@@ -44,25 +50,19 @@ nmap("<leader>h", "<cmd>nohlsearch<CR>", "No highlight")
 nmap("<leader>/", "gcc", "Toggle comment", { remap = true })
 vmap("<leader>/", "gc",  "Toggle comment", { remap = true })
 
--- ======================
--- Buffers
--- ======================
-nmap("<M-l>", "<cmd>BufferLineCycleNext<CR>", "Next Buffer")
-nmap("<M-h>", "<cmd>BufferLineCyclePrev<CR>", "Previous Buffer")
+-- Move
+nmap("<M-j>", function() require("mini.move").move_line("down") end)
+nmap("<M-k>", function() require("mini.move").move_line("up") end)
 
-nmap("<leader>c", function()
-  require("mini.bufremove").delete(0, false)
-end, "Close buffer")
+vmap("<M-j>", function() require("mini.move").move_selection("down") end)
+vmap("<M-k>", function() require("mini.move").move_selection("up") end)
 
 -- ======================
 -- Gitsigns
 -- ======================
-
--- Navigation
 nmap("]c", "<cmd>lua if vim.wo.diff then vim.cmd.normal({']c', bang = true}) else require('gitsigns').nav_hunk('next') end<CR>", "Next Hunk")
 nmap("[c", "<cmd>lua if vim.wo.diff then vim.cmd.normal({'[c', bang = true}) else require('gitsigns').nav_hunk('prev') end<CR>", "Prev Hunk")
 
--- Actions
 nmap("<leader>gr", "<cmd>lua require('gitsigns').reset_hunk()<CR>", "Reset Hunk")
 
 vmap("<leader>gs", "<cmd>lua require('gitsigns').stage_hunk({vim.fn.line('.'), vim.fn.line('v')})<CR>", "Stage Hunk")
@@ -125,33 +125,31 @@ nmap("<leader>Sr", "<cmd>SudaRead<CR>", "Open with Sudo")
 -- ======================
 -- Telescope
 -- ======================
-
--- ======================
 -- Search
--- ======================
-nmap("<leader>sb", "<cmd>lua require('telescope.builtin').buffers()<CR>", { desc = "[S]earch [B]uffers" })
-nmap("<leader>sc", "<cmd>Telescope commands<cr>", "Commands")
-nmap("<leader>sd", "<cmd>lua require('telescope.builtin').diagnostics()<CR>", { desc = "[S]earch [D]iagnostics" })
-nmap("<leader>sf", "<cmd>lua require('telescope.builtin').find_files()<CR>", { desc = "[S]earch [F]iles" })
-nmap("<leader>sh", "<cmd>lua require('telescope.builtin').help_tags()<CR>", { desc = "[S]earch [H]elp" })
-nmap("<leader>sH", "<cmd>Telescope highlights<cr>", "Highlight Groups")
-nmap("<leader>sk", "<cmd>lua require('telescope.builtin').keymaps()<CR>", { desc = "[S]earch [K]eymaps" })
-nmap("<leader>sl", "<cmd>lua require('telescope.builtin').resume()<CR>", { desc = "[S]earch [L]ast Picker" })
-nmap("<leader>sM", "<cmd>Telescope man_pages<cr>", "Man Pages")
-nmap("<leader>sr", "<cmd>lua require('telescope.builtin').oldfiles()<CR>", { desc = '[S]earch Recent Files ("." for repeat)' })
-nmap("<leader>sR", "<cmd>Telescope registers<cr>", "Registers")
-nmap("<leader>ss", "<cmd>Telescope lsp_document_symbols<cr>", "Symbols")
-nmap("<leader>st", "<cmd>lua require('telescope.builtin').live_grep()<CR>", { desc = "[S]earch [T]ext" })
-nmap("<leader>sT", "<cmd>lua require('telescope.builtin').builtin()<CR>", { desc = "[S]earch [T]elescope" })
-nmap("<leader>sw", "<cmd>lua require('telescope.builtin').grep_string()<CR>", { desc = "[S]earch current [W]ord" })
-nmap("<leader>su", "<cmd>Telescope undo<cr>", "Undo History")
-
+nmap("<leader>sb", "<cmd>lua require('telescope.builtin').buffers()<CR>", "[S]earch [B]uffers" )
+nmap("<leader>sc", "<cmd>Telescope commands<cr>", "[S]earch [C]ommands")
+nmap("<leader>sd", "<cmd>lua require('telescope.builtin').diagnostics()<CR>", "[S]earch [D]iagnostics" )
+nmap("<leader>sf", "<cmd>lua require('telescope.builtin').find_files()<CR>", "[S]earch [F]iles" )
+nmap("<leader>sh", "<cmd>lua require('telescope.builtin').help_tags()<CR>", "[S]earch [H]elp" )
+nmap("<leader>sH", "<cmd>Telescope highlights<cr>", "[S]earch [H]ighlight Groups")
+nmap("<leader>sk", "<cmd>lua require('telescope.builtin').keymaps()<CR>", "[S]earch [K]eymaps" )
+nmap("<leader>sl", "<cmd>lua require('telescope.builtin').resume()<CR>", "[S]earch [L]ast Picker" )
+nmap("<leader>sM", "<cmd>Telescope man_pages<cr>", "[Search] [M]an Pages")
+nmap("<leader>sr", "<cmd>lua require('telescope.builtin').oldfiles()<CR>", '[S]earch [R]ecent Files' )
+nmap("<leader>sR", "<cmd>Telescope registers<cr>", "[S]earch [R]egisters")
+nmap("<leader>ss", "<cmd>Telescope lsp_document_symbols<cr>", "[Search] [S]ymbols")
+nmap("<leader>st", "<cmd>lua require('telescope.builtin').live_grep()<CR>", "[S]earch [T]ext" )
+nmap("<leader>sT", "<cmd>lua require('telescope.builtin').builtin()<CR>", "[S]earch [T]elescope" )
+nmap("<leader>sw", "<cmd>lua require('telescope.builtin').grep_string()<CR>", "[S]earch current [W]ord" )
+nmap("<leader>su", "<cmd>Telescope undo<cr>", "[S]earch [U]ndo History")
 nmap("<leader>sn", function()
 	require("telescope.builtin").find_files({
 		cwd = vim.fn.stdpath("config"),
 	})
-end, { desc = "[S]earch [N]eovim files" })
+end, "[S]earch [N]eovim files" )
 
+-- Integrations
+nmap("<leader>tb", "<cmd>Telescope bookmarks list<cr>", "Bookmarks")
 nmap("<leader>tp", "<cmd>Telescope projects<CR>", "Recent Projects")
 nmap("<leader>tP", "<cmd>Telescope project<CR>", "Select Project")
 nmap("<leader>tn", "<cmd>NoiceTelescope<CR>", "Noice Messages")
@@ -163,7 +161,34 @@ nmap("<leader>tc", function()
   })
 end, "Cheatsheet")
 
-nmap("<leader>tb", "<cmd>Telescope bookmarks list<cr>", "Bookmarks")
+-- ======================
+-- Buffer Actions
+-- ======================
+nmap("<leader>bf", "<cmd>lua require('conform').format({ async = true, lsp_fallback = true })<cr>", "[B]uffer [F]ormat (Conform)")
+nmap("<leader>bh", "<cmd>BufferLineCloseLeft<CR>", "Close Left")
+nmap("<leader>bl", "<cmd>BufferLineCloseRight<CR>", "Close Right")
+
+nmap("<M-l>", "<cmd>BufferLineCycleNext<CR>", "Next Buffer")
+nmap("<M-h>", "<cmd>BufferLineCyclePrev<CR>", "Previous Buffer")
+nmap("<M-x>", function()
+  require("mini.bufremove").delete(0, false)
+end, "Close buffer")
+
+nmap("<leader>c", function()
+  require("mini.bufremove").delete(0, false)
+end, "Close buffer")
+
+-- ======================
+-- Bookmarks (from your config, ensure bookmarks.nvim is configured correctly)
+-- ======================
+-- nmap("mm", "<cmd>lua require('bookmarks').bookmark_toggle()<cr>", "Toggle bookmark" )
+-- nmap("mi", "<cmd>lua require('bookmarks').bookmark_ann()<cr>", "Add/Edit bookmark annotation")
+-- nmap("mc", "<cmd>lua require('bookmarks').bookmark_clean()<cr>",  "Clean marks in buffer")
+-- nmap("mn", "<cmd>lua require('bookmarks').bookmark_next()<cr>",  "Next bookmark")
+-- nmap("mp", "<cmd>lua require('bookmarks').bookmark_prev()<cr>",  "Previous bookmark")
+-- nmap("ml", "<cmd>lua require('bookmarks').bookmark_list()<cr>", "List bookmarks")
+-- nmap("mx", "<cmd>lua require('bookmarks').bookmark_clear_all()<cr>", "Clear all bookmarks")
+
 
 -- ======================
 -- Trouble
@@ -219,6 +244,10 @@ function M.setup_lsp_keymaps(buf, client)
   lmap("n", "<leader>lS", telescope.lsp_dynamic_workspace_symbols, "Workspace Symbols")
   lmap("n", "<leader>lt", telescope.lsp_type_definitions, "Type Definition")
   lmap("n", "gd", vim.lsp.buf.definition, "Goto Definition")
+
+    lmap("n", "<C-b>", vim.lsp.buf.definition, "Go to LSP Definition") -- This was vim.lsp.buf.definition, so kept it
+    -- lmap("n", "<C-p>", "<cmd>lua require('lsp_signature').toggle_float_win()<cr>", { desc = "Toggle LSP Signature Float" })
+    -- lmap("i", "<C-p>", "<cmd>lua require('lsp_signature').toggle_float_win()<cr>", { desc = "Toggle LSP Signature Float" })
 
   if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
     lmap("n", "<leader>lh", function()

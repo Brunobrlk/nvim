@@ -5,3 +5,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		require("keymaps").setup_lsp_keymaps(event.buf, client)
 	end,
 })
+
+vim.api.nvim_create_user_command("DiagInfo", function()
+    vim.diagnostic.open_float({
+        source = true,
+    })
+end, {})
+
+vim.api.nvim_create_user_command("LspClients", function()
+    print(vim.inspect(vim.lsp.get_clients()))
+end, {})

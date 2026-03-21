@@ -1,19 +1,32 @@
 return {
-	"tpope/vim-surround",
 	"tpope/vim-repeat",
 	"numToStr/Comment.nvim",
-	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		config = true,
-	},
-	{
-		"matze/vim-move",
-		init = function()
-			vim.g.move_map_keys = 0
-		end,
-	},
 	{ "nvim-mini/mini.bufremove", version = "*" },
+	{ "kylechui/nvim-surround", version = "^4.0.0", event = "VeryLazy"},
+	{ "windwp/nvim-autopairs", event = "InsertEnter", config = true },
+	{
+		"nvim-mini/mini.move",
+		opts = {
+			mappings = { -- Disable: Handle inside keymaps.lua
+				left = "",
+				right = "",
+				down = "",
+				up = "",
+				line_left = "",
+				line_right = "",
+				line_down = "",
+				line_up = "",
+			},
+		},
+	},
+    {
+        "lambdalisue/suda.vim", -- Read/Write files with sudo
+        lazy = false,
+        init = function()
+            vim.g.suda_smart_edit = 1
+            vim.g["suda#noninteractive"] = 1
+        end,
+    },
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
@@ -28,6 +41,12 @@ return {
 			scope = {
 				enabled = false,
 			},
+      -- exclude = {
+      --   filetypes = {
+      --     "help", "terminal", "alpha", "lazy", "gitcommit", "markdown",
+      --     "TelescopePrompt", "whichkey", "packer", "lspinfo", "Trouble", "Outline",
+      --   },
+      -- },
 		},
 	},
 }
