@@ -30,6 +30,7 @@ require("lazy").setup({
 	require("plugins.markdown"),
 	require("plugins.mason"),
 	require("plugins.neotree"),
+	require("plugins.noice"),
 	require("plugins.pyvenv"),
 	require("plugins.telescope"),
 	require("plugins.toggleterm"),

@@ -4,7 +4,7 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-		-- { 'nvim-telescope/telescope-ui-select.nvim' },
+		{ "nvim-telescope/telescope-ui-select.nvim" },
 		{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 	},
 	config = function()
@@ -47,6 +47,19 @@ return {
 						"--exclude",
 						".venv",
 					},
+				},
+			},
+			extensions = {
+				["ui-select"] = {
+					require("telescope.themes").get_dropdown({
+						previewer = false,
+						prompt_title = false,
+						results_title = false,
+						width = 0.35,
+						height = 0.25,
+						layout_config = { anchor = "CENTER" },
+						border = true,
+					}),
 				},
 			},
 		})

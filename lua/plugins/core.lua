@@ -2,7 +2,7 @@ return {
 	"tpope/vim-repeat",
 	"numToStr/Comment.nvim",
 	{ "nvim-mini/mini.bufremove", version = "*" },
-	{ "kylechui/nvim-surround", version = "^4.0.0", event = "VeryLazy"},
+	{ "kylechui/nvim-surround", version = "^4.0.0", event = "VeryLazy" },
 	{ "windwp/nvim-autopairs", event = "InsertEnter", config = true },
 	{
 		"nvim-mini/mini.move",
@@ -19,14 +19,14 @@ return {
 			},
 		},
 	},
-    {
-        "lambdalisue/suda.vim", -- Read/Write files with sudo
-        lazy = false,
-        init = function()
-            vim.g.suda_smart_edit = 1
-            vim.g["suda#noninteractive"] = 1
-        end,
-    },
+	{
+		"lambdalisue/suda.vim", -- Read/Write files with sudo
+		lazy = false,
+		init = function()
+			vim.g.suda_smart_edit = 1
+			vim.g["suda#noninteractive"] = 1
+		end,
+	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
@@ -41,12 +41,18 @@ return {
 			scope = {
 				enabled = false,
 			},
-      -- exclude = {
-      --   filetypes = {
-      --     "help", "terminal", "alpha", "lazy", "gitcommit", "markdown",
-      --     "TelescopePrompt", "whichkey", "packer", "lspinfo", "Trouble", "Outline",
-      --   },
-      -- },
+			-- exclude = { filetypes = { "help", "terminal", "markdown", "TelescopePrompt", "whichkey", "lspinfo", "Trouble", "Outline",
+		},
+	},
+	{
+		"christoomey/vim-tmux-navigator",
+		cmd = {
+			"TmuxNavigateLeft",
+			"TmuxNavigateDown",
+			"TmuxNavigateUp",
+			"TmuxNavigateRight",
+			"TmuxNavigatePrevious",
+			"TmuxNavigatorProcessList",
 		},
 	},
 }

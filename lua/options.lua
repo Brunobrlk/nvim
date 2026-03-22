@@ -96,19 +96,3 @@ opt.showmode = false -- Don't show -- INSERT -- etc. in the command line. status
 opt.showcmd = false
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
-
--- Filetype Additions
-vim.filetype.add({
-    filename = {
-        ["Fastfile"]       = "ruby",
-        ["Appfile"]        = "ruby",
-        ["Matchfile"]      = "ruby",
-        ["Gymfile"]        = "ruby",
-        ["Deliverfile"]    = "ruby",
-        ["Pluginfile"]     = "ruby",
-        ["Scanfile"]       = "ruby",
-        ["Screengrabfile"] = "ruby",
-        ["Snapfile"]       = "ruby",
-        ["Podfile"]        = "ruby", -- CocoaPods, bonus
-    },
-})

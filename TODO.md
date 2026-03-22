@@ -55,18 +55,11 @@
 - [ ] diffview.nvim 1.33ms  start
 - [ ] nvim-colorizer.lua 2.39ms  V
 - [ ] vim-fugitive 1.03ms  start
+- [x] noice.nvim 1.42ms  VeryLazy
+- [x] nui.nvim 0.38ms - A library(Used by noice, neotree), mainly for plugins just like plenary
 
 - [ ] vim-tmux-navigator 0.49ms  s
-- [ ] nui.nvim 0.38ms  noice.nvim
-- [ ] dressing.nvim 0.8ms  flutter
-- [ ] noice.nvim 1.42ms  VeryLazy
-- [ ] nvim-navic 0.88ms  User File
 - [ ] lsp_signature.nvim 4.11ms  V
-- [ ] bigfile.nvim 1.45ms  BufRead
-- [ ] project.nvim 0.88ms 󰢱 telesco
-- [ ] telescope-project.nvim 0.04ms
-- [ ] nvim-web-devicons 0.16ms 󰢱 nv
-- [ ] plenary.nvim 0.13ms 󰢱 plenary
 - [ ] friendly-snippets 0.35ms  Lu
 - [ ] Bookmarks
       function M.setup()
@@ -88,33 +81,35 @@
 - [x] Add: gitsigns naming suggestions and shortcuts
 - [x] Add: Shortcut to close all buffers left/right space+b then h/l
 - [x] Fix: Move line visual mode
+- [x] Finish: telescope config
+- [x] Check: Ensure all and correct capabilities, diagnostics, clean mental model config(Lint, Format, LSP)
+- [ ] Add: Ideas for ftplugin
 - [ ] UX: neotree close empty folder
 - [ ] UX: Flutter only on dart lsp or flutter projects
-- [ ] Finish: telescope config
-- [ ] Check: Ensure all and correct capabilities, diagnostics, clean mental model config(Lint, Format, LSP)
-- [ ] UX: Use w to navigate instead of a random command
+- [ ] Fix: Signature and completion colliding
+- [ ] UX: Use w to navigate in neotree instead of a random command
 - [ ] Fix: difference between format on lunarvim vs neovim. One is using tabs or spaces
 - [ ] Shortcut ideas: Switch colorscheme: Toggle transparency/theme, markdown, mason, lsp, lazy, telescope, conform, del v-selection occurrences
 - [x] Refactor: Migrate mappings to SSOT keymaps
-    - [x] blink - internal only
-    - [x] bufferline
-    - [x] colorscheme
-    - [x] comment
-    - [x] conform
-    - [x] core
-    - [x] gitsigns
-    - [x] illuminate
-    - [x] lsp
-    - [x] lualine
-    - [x] markdown
-    - [x] mason
-    - [x] neotree - internal only
-    - [x] pyvenv
-    - [x] sessions
-    - [x] telescope
-    - [x] toggleterm
-    - [x] treesitter - internal only
-    - [x] whichkey
+  - [x] blink - internal only
+  - [x] bufferline
+  - [x] colorscheme
+  - [x] comment
+  - [x] conform
+  - [x] core
+  - [x] gitsigns
+  - [x] illuminate
+  - [x] lsp
+  - [x] lualine
+  - [x] markdown
+  - [x] mason
+  - [x] neotree - internal only
+  - [x] pyvenv
+  - [x] sessions
+  - [x] telescope
+  - [x] toggleterm
+  - [x] treesitter - internal only
+  - [x] whichkey
 
 # LunarVim Don't use
 
@@ -130,3 +125,10 @@
 - [ ] nvim-lua/popup.nvim [WIP] An implementation of the Popup API from vim in Neovim. Hope to upstream when complete
 - [ ] tamago324/nlsp-settings.nvim A plugin for setting Neovim LSP with JSON or YAML files
 - [ ] nvimtools/none-ls.nvim Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua.
+
+# Mine Don't use
+
+- [ ] dressing.nvim 0.8ms  flutter
+- [ ] nvim-navic 0.88ms  User File
+- [ ] telescope-project.nvim 0.04ms
+- [ ] bigfile.nvim 1.45ms  BufRead

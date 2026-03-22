@@ -7,23 +7,23 @@ local map = vim.keymap.set
 -- Helpers (balanced)
 -- ======================
 local function opts(desc, extra)
-  return vim.tbl_extend("force", { silent = true, desc = desc }, extra or {})
+	return vim.tbl_extend("force", { silent = true, desc = desc }, extra or {})
 end
 
 local function nmap(lhs, rhs, desc, extra)
-  map("n", lhs, rhs, opts(desc, extra))
+	map("n", lhs, rhs, opts(desc, extra))
 end
 
 local function imap(lhs, rhs, desc, extra)
-  map("i", lhs, rhs, opts(desc, extra))
+	map("i", lhs, rhs, opts(desc, extra))
 end
 
 local function vmap(lhs, rhs, desc, extra)
-  map("v", lhs, rhs, opts(desc, extra))
+	map("v", lhs, rhs, opts(desc, extra))
 end
 
 local function tmap(lhs, rhs, desc, extra)
-  map("t", lhs, rhs, opts(desc, extra))
+	map("t", lhs, rhs, opts(desc, extra))
 end
 
 -- Disable space
@@ -48,20 +48,44 @@ nmap("<leader>h", "<cmd>nohlsearch<CR>", "No highlight")
 
 -- Comment.nvim (requires remap)
 nmap("<leader>/", "gcc", "Toggle comment", { remap = true })
-vmap("<leader>/", "gc",  "Toggle comment", { remap = true })
+vmap("<leader>/", "gc", "Toggle comment", { remap = true })
 
 -- Move
-nmap("<M-j>", function() require("mini.move").move_line("down") end)
-nmap("<M-k>", function() require("mini.move").move_line("up") end)
+nmap("<M-j>", function()
+	require("mini.move").move_line("down")
+end)
+nmap("<M-k>", function()
+	require("mini.move").move_line("up")
+end)
 
-vmap("<M-j>", function() require("mini.move").move_selection("down") end)
-vmap("<M-k>", function() require("mini.move").move_selection("up") end)
+vmap("<M-j>", function()
+	require("mini.move").move_selection("down")
+end)
+vmap("<M-k>", function()
+	require("mini.move").move_selection("up")
+end)
+
+-- ======================
+-- TmuxNavigator
+-- ======================
+nmap("<C-h>", "<cmd>TmuxNavigateLeft<CR>")
+nmap("<C-j>", "<cmd>TmuxNavigateDown<CR>")
+nmap("<C-k>", "<cmd>TmuxNavigateUp<CR>")
+nmap("<C-l>", "<cmd>TmuxNavigateRight<CR>")
 
 -- ======================
 -- Gitsigns
 -- ======================
-nmap("]c", "<cmd>lua if vim.wo.diff then vim.cmd.normal({']c', bang = true}) else require('gitsigns').nav_hunk('next') end<CR>", "Next Hunk")
-nmap("[c", "<cmd>lua if vim.wo.diff then vim.cmd.normal({'[c', bang = true}) else require('gitsigns').nav_hunk('prev') end<CR>", "Prev Hunk")
+nmap(
+	"]c",
+	"<cmd>lua if vim.wo.diff then vim.cmd.normal({']c', bang = true}) else require('gitsigns').nav_hunk('next') end<CR>",
+	"Next Hunk"
+)
+nmap(
+	"[c",
+	"<cmd>lua if vim.wo.diff then vim.cmd.normal({'[c', bang = true}) else require('gitsigns').nav_hunk('prev') end<CR>",
+	"Prev Hunk"
+)
 
 nmap("<leader>gr", "<cmd>lua require('gitsigns').reset_hunk()<CR>", "Reset Hunk")
 
@@ -126,27 +150,27 @@ nmap("<leader>Sr", "<cmd>SudaRead<CR>", "Open with Sudo")
 -- Telescope
 -- ======================
 -- Search
-nmap("<leader>sb", "<cmd>lua require('telescope.builtin').buffers()<CR>", "[S]earch [B]uffers" )
+nmap("<leader>sb", "<cmd>lua require('telescope.builtin').buffers()<CR>", "[S]earch [B]uffers")
 nmap("<leader>sc", "<cmd>Telescope commands<cr>", "[S]earch [C]ommands")
-nmap("<leader>sd", "<cmd>lua require('telescope.builtin').diagnostics()<CR>", "[S]earch [D]iagnostics" )
-nmap("<leader>sf", "<cmd>lua require('telescope.builtin').find_files()<CR>", "[S]earch [F]iles" )
-nmap("<leader>sh", "<cmd>lua require('telescope.builtin').help_tags()<CR>", "[S]earch [H]elp" )
+nmap("<leader>sd", "<cmd>lua require('telescope.builtin').diagnostics()<CR>", "[S]earch [D]iagnostics")
+nmap("<leader>sf", "<cmd>lua require('telescope.builtin').find_files()<CR>", "[S]earch [F]iles")
+nmap("<leader>sh", "<cmd>lua require('telescope.builtin').help_tags()<CR>", "[S]earch [H]elp")
 nmap("<leader>sH", "<cmd>Telescope highlights<cr>", "[S]earch [H]ighlight Groups")
-nmap("<leader>sk", "<cmd>lua require('telescope.builtin').keymaps()<CR>", "[S]earch [K]eymaps" )
-nmap("<leader>sl", "<cmd>lua require('telescope.builtin').resume()<CR>", "[S]earch [L]ast Picker" )
+nmap("<leader>sk", "<cmd>lua require('telescope.builtin').keymaps()<CR>", "[S]earch [K]eymaps")
+nmap("<leader>sl", "<cmd>lua require('telescope.builtin').resume()<CR>", "[S]earch [L]ast Picker")
 nmap("<leader>sM", "<cmd>Telescope man_pages<cr>", "[Search] [M]an Pages")
-nmap("<leader>sr", "<cmd>lua require('telescope.builtin').oldfiles()<CR>", '[S]earch [R]ecent Files' )
+nmap("<leader>sr", "<cmd>lua require('telescope.builtin').oldfiles()<CR>", "[S]earch [R]ecent Files")
 nmap("<leader>sR", "<cmd>Telescope registers<cr>", "[S]earch [R]egisters")
 nmap("<leader>ss", "<cmd>Telescope lsp_document_symbols<cr>", "[Search] [S]ymbols")
-nmap("<leader>st", "<cmd>lua require('telescope.builtin').live_grep()<CR>", "[S]earch [T]ext" )
-nmap("<leader>sT", "<cmd>lua require('telescope.builtin').builtin()<CR>", "[S]earch [T]elescope" )
-nmap("<leader>sw", "<cmd>lua require('telescope.builtin').grep_string()<CR>", "[S]earch current [W]ord" )
+nmap("<leader>st", "<cmd>lua require('telescope.builtin').live_grep()<CR>", "[S]earch [T]ext")
+nmap("<leader>sT", "<cmd>lua require('telescope.builtin').builtin()<CR>", "[S]earch [T]elescope")
+nmap("<leader>sw", "<cmd>lua require('telescope.builtin').grep_string()<CR>", "[S]earch current [W]ord")
 nmap("<leader>su", "<cmd>Telescope undo<cr>", "[S]earch [U]ndo History")
 nmap("<leader>sn", function()
 	require("telescope.builtin").find_files({
 		cwd = vim.fn.stdpath("config"),
 	})
-end, "[S]earch [N]eovim files" )
+end, "[S]earch [N]eovim files")
 
 -- Integrations
 nmap("<leader>tb", "<cmd>Telescope bookmarks list<cr>", "Bookmarks")
@@ -155,27 +179,31 @@ nmap("<leader>tP", "<cmd>Telescope project<CR>", "Select Project")
 nmap("<leader>tn", "<cmd>NoiceTelescope<CR>", "Noice Messages")
 
 nmap("<leader>tc", function()
-  require("telescope.builtin").live_grep({
-    prompt_title = "Cheatsheets",
-    cwd = vim.fn.expand("~/.utils/Cheatsheets"),
-  })
+	require("telescope.builtin").live_grep({
+		prompt_title = "Cheatsheets",
+		cwd = vim.fn.expand("~/.utils/Cheatsheets"),
+	})
 end, "Cheatsheet")
 
 -- ======================
 -- Buffer Actions
 -- ======================
-nmap("<leader>bf", "<cmd>lua require('conform').format({ async = true, lsp_fallback = true })<cr>", "[B]uffer [F]ormat (Conform)")
+nmap(
+	"<leader>bf",
+	"<cmd>lua require('conform').format({ async = true, lsp_fallback = true })<cr>",
+	"[B]uffer [F]ormat (Conform)"
+)
 nmap("<leader>bh", "<cmd>BufferLineCloseLeft<CR>", "Close Left")
 nmap("<leader>bl", "<cmd>BufferLineCloseRight<CR>", "Close Right")
 
 nmap("<M-l>", "<cmd>BufferLineCycleNext<CR>", "Next Buffer")
 nmap("<M-h>", "<cmd>BufferLineCyclePrev<CR>", "Previous Buffer")
 nmap("<M-x>", function()
-  require("mini.bufremove").delete(0, false)
+	require("mini.bufremove").delete(0, false)
 end, "Close buffer")
 
 nmap("<leader>c", function()
-  require("mini.bufremove").delete(0, false)
+	require("mini.bufremove").delete(0, false)
 end, "Close buffer")
 
 -- ======================
@@ -188,7 +216,6 @@ end, "Close buffer")
 -- nmap("mp", "<cmd>lua require('bookmarks').bookmark_prev()<cr>",  "Previous bookmark")
 -- nmap("ml", "<cmd>lua require('bookmarks').bookmark_list()<cr>", "List bookmarks")
 -- nmap("mx", "<cmd>lua require('bookmarks').bookmark_clear_all()<cr>", "Clear all bookmarks")
-
 
 -- ======================
 -- Trouble
@@ -222,38 +249,38 @@ tmap("<M-3>", [[<C-\><C-n><cmd>3ToggleTerm direction=float<CR>]], "Terminal 3 (f
 local M = {}
 
 function M.setup_lsp_keymaps(buf, client)
-  local telescope = require("telescope.builtin")
+	local telescope = require("telescope.builtin")
 
-  local function lmap(mode, lhs, rhs, desc, extra)
-    map(mode, lhs, rhs, opts(desc, vim.tbl_extend("force", { buffer = buf }, extra or {})))
-  end
+	local function lmap(mode, lhs, rhs, desc, extra)
+		map(mode, lhs, rhs, opts(desc, vim.tbl_extend("force", { buffer = buf }, extra or {})))
+	end
 
-  lmap("n", "<leader>lr", vim.lsp.buf.rename, "Rename")
-  lmap({ "n", "x" }, "<leader>la", vim.lsp.buf.code_action, "Code Action")
+	lmap("n", "<leader>lr", vim.lsp.buf.rename, "Rename")
+	lmap({ "n", "x" }, "<leader>la", vim.lsp.buf.code_action, "Code Action")
 
-  lmap("n", "<leader>lf", function()
-    require("conform").format({ async = true, lsp_fallback = true })
-  end, "Format (Conform)")
+	lmap("n", "<leader>lf", function()
+		require("conform").format({ async = true, lsp_fallback = true })
+	end, "Format (Conform)")
 
-  lmap("n", "<leader>lX", "<cmd>LspRestart<cr>", "Restart LSP")
-  lmap("n", "<leader>lR", telescope.lsp_references, "References")
-  lmap("n", "<leader>li", telescope.lsp_implementations, "Implementation")
-  lmap("n", "<leader>ld", telescope.lsp_definitions, "Definitions")
-  lmap("n", "<leader>lD", vim.lsp.buf.declaration, "Declaration")
-  lmap("n", "<leader>ls", telescope.lsp_document_symbols, "Document Symbols")
-  lmap("n", "<leader>lS", telescope.lsp_dynamic_workspace_symbols, "Workspace Symbols")
-  lmap("n", "<leader>lt", telescope.lsp_type_definitions, "Type Definition")
-  lmap("n", "gd", vim.lsp.buf.definition, "Goto Definition")
+	lmap("n", "<leader>lX", "<cmd>LspRestart<cr>", "Restart LSP")
+	lmap("n", "<leader>lR", telescope.lsp_references, "References")
+	lmap("n", "<leader>li", telescope.lsp_implementations, "Implementation")
+	lmap("n", "<leader>ld", telescope.lsp_definitions, "Definitions")
+	lmap("n", "<leader>lD", vim.lsp.buf.declaration, "Declaration")
+	lmap("n", "<leader>ls", telescope.lsp_document_symbols, "Document Symbols")
+	lmap("n", "<leader>lS", telescope.lsp_dynamic_workspace_symbols, "Workspace Symbols")
+	lmap("n", "<leader>lt", telescope.lsp_type_definitions, "Type Definition")
+	lmap("n", "gd", vim.lsp.buf.definition, "Goto Definition")
 
-    lmap("n", "<C-b>", vim.lsp.buf.definition, "Go to LSP Definition") -- This was vim.lsp.buf.definition, so kept it
-    -- lmap("n", "<C-p>", "<cmd>lua require('lsp_signature').toggle_float_win()<cr>", { desc = "Toggle LSP Signature Float" })
-    -- lmap("i", "<C-p>", "<cmd>lua require('lsp_signature').toggle_float_win()<cr>", { desc = "Toggle LSP Signature Float" })
+	lmap("n", "<C-b>", vim.lsp.buf.definition, "Go to LSP Definition") -- This was vim.lsp.buf.definition, so kept it
+	-- lmap("n", "<C-p>", "<cmd>lua require('lsp_signature').toggle_float_win()<cr>", { desc = "Toggle LSP Signature Float" })
+	-- lmap("i", "<C-p>", "<cmd>lua require('lsp_signature').toggle_float_win()<cr>", { desc = "Toggle LSP Signature Float" })
 
-  if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-    lmap("n", "<leader>lh", function()
-      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = buf }))
-    end, "Toggle Inlay Hints")
-  end
+	if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+		lmap("n", "<leader>lh", function()
+			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = buf }))
+		end, "Toggle Inlay Hints")
+	end
 end
 
 return M

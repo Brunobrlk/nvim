@@ -4,7 +4,6 @@ return {
 		"mason-org/mason-lspconfig.nvim",
 		"b0o/schemastore.nvim",
 		"saghen/blink.cmp", -- Allows extra capabilities provided by blink.cmp
-		{ "j-hui/fidget.nvim", opts = {} }, -- Useful status updates for LSP.
 	},
 	config = function()
 		vim.diagnostic.config({ -- Diagnostic Config. See :help vim.diagnostic.Opts
