@@ -18,12 +18,13 @@ return {
 				ensure_installed = {
 					-- LSP
 					"jdtls",
-					"kotlin-lsp",
+					-- "kotlin-lsp",
+					"kotlin-language-server",
 					"groovy-language-server",
 					"vim-language-server",
-					"jsonls",
-					"yamlls",
-					"lua_ls",
+					"json-lsp",
+					"yaml-language-server",
+					"lua-language-server",
 					"bash-language-server",
 					"pyright",
 

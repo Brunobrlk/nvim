@@ -1,10 +1,6 @@
 return {
 	"neovim/nvim-lspconfig",
-	dependencies = {
-		"mason-org/mason-lspconfig.nvim",
-		"b0o/schemastore.nvim",
-		"saghen/blink.cmp",
-	},
+	dependencies = { "b0o/schemastore.nvim", "saghen/blink.cmp" },
 	config = function()
 		vim.diagnostic.config({ -- Diagnostic Config. See :help vim.diagnostic.Opts
 			severity_sort = true,
@@ -35,11 +31,16 @@ return {
 
 		vim.lsp.config("*", { capabilities = require("blink.cmp").get_lsp_capabilities() })
 		vim.lsp.enable({
-			"lua_ls",
-			"jsonls",
-			"yamlls",
-			"kotlin_lsp",
+			"bashls",
+			"groovyls",
 			"jdtls",
+			"jsonls",
+			-- "kotlin_lsp",
+			"kotlin_language_server",
+			"lua_ls",
+			"vimls",
+			"yamlls",
+			"pyright",
 		})
 	end,
 }
