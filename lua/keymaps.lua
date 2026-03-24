@@ -132,13 +132,13 @@ nmap("<leader>fx", "<cmd>FlutterLogClear<cr>", "Log Clear")
 -- ======================
 -- Python
 -- ======================
-nmap("<leader>Pv", "<cmd>VenvSelect<cr>", "Venv select")
+nmap("<leader>pv", "<cmd>VenvSelect<cr>", "Venv select")
 
 -- ======================
 -- Session
 -- ======================
-nmap("<leader>rw", "<cmd>AutoSession search<cr>", "Select session")
-nmap("<leader>rs", "<cmd>AutoSession save<cr>", "Save session")
+nmap("<leader>aa", "<cmd>AutoSession search<cr>", "[A]ll")
+nmap("<leader>as", "<cmd>AutoSession save<cr>", "[S]ave")
 
 -- ======================
 -- Sudo
@@ -205,17 +205,6 @@ end, "Close buffer")
 nmap("<leader>c", function()
 	require("mini.bufremove").delete(0, false)
 end, "Close buffer")
-
--- ======================
--- Bookmarks (from your config, ensure bookmarks.nvim is configured correctly)
--- ======================
--- nmap("mm", "<cmd>lua require('bookmarks').bookmark_toggle()<cr>", "Toggle bookmark" )
--- nmap("mi", "<cmd>lua require('bookmarks').bookmark_ann()<cr>", "Add/Edit bookmark annotation")
--- nmap("mc", "<cmd>lua require('bookmarks').bookmark_clean()<cr>",  "Clean marks in buffer")
--- nmap("mn", "<cmd>lua require('bookmarks').bookmark_next()<cr>",  "Next bookmark")
--- nmap("mp", "<cmd>lua require('bookmarks').bookmark_prev()<cr>",  "Previous bookmark")
--- nmap("ml", "<cmd>lua require('bookmarks').bookmark_list()<cr>", "List bookmarks")
--- nmap("mx", "<cmd>lua require('bookmarks').bookmark_clear_all()<cr>", "Clear all bookmarks")
 
 -- ======================
 -- Trouble
