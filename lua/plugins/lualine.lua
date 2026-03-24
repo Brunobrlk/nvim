@@ -3,7 +3,7 @@ return {
 	event = "VeryLazy",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
-		local avd = require("scripts.nvim_android_device")
+		local avd = require("nvim_android_device")
 		require("lualine").setup({
 			options = {
 				theme = "auto", -- or your desired theme
@@ -28,11 +28,11 @@ return {
 						symbols = { error = " ", warn = " ", info = " ", hint = " " },
 					},
 					"filetype",
-                    {
-                        require("noice").api.statusline.mode.get,
-                        cond = require("noice").api.statusline.mode.has,
-                        color = { fg = "#ff9e64" },
-                      }
+					{
+						require("noice").api.statusline.mode.get,
+						cond = require("noice").api.statusline.mode.has,
+						color = { fg = "#ff9e64" },
+					},
 				},
 				lualine_x = {
 					"searchcount",

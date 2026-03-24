@@ -3,6 +3,7 @@ return {
 	lazy = false, -- Often needs to load early for LSP setup
 	dependencies = {
 		"nvim-lua/plenary.nvim",
+		{ dir = "~/Development/Projects/nvim-android-device" },
 	},
 	ft = { "dart" }, -- Only load for Dart files
 	config = function()

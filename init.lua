@@ -16,13 +16,13 @@ local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
 require("lazy").setup({
-	require("plugins.blink"),
 	require("plugins.bufferline"),
 	require("plugins.colorscheme"),
+	require("plugins.completion"),
 	require("plugins.conform"),
 	require("plugins.core"),
 	require("plugins.flutter"),
-	require("plugins.gitsigns"),
+	require("plugins.git"),
 	require("plugins.illuminate"),
 	require("plugins.lint"),
 	require("plugins.lsp"),

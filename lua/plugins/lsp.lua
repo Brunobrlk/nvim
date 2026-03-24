@@ -35,17 +35,10 @@ return {
 
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-		local servers = { -- Enable the following language servers
-			lua_ls = {
-				settings = { -- Override the default settings passed when initializing the server.
-					Lua = {
-						completion = {
-							callSnippet = "Replace",
-						},
-						-- diagnostics = { disable = { 'missing-fields' } }, ignore Lua_LS's noisy `missing-fields` warnings
-					},
-				},
-			},
+		local servers = {
+			kotlin_lsp = {},
+			jdtls = {},
+
 			jsonls = {
 				-- cmd = { ... }, Override the default command used to start the server
 				-- filetypes = { ... }, Override the default list of associated filetypes for the server
@@ -57,8 +50,6 @@ return {
 					},
 				},
 			},
-			kotlin_lsp = {},
-			jdtls = {},
 			yamlls = {
 				settings = {
 					yaml = {
@@ -67,6 +58,15 @@ return {
 							url = "",
 						},
 						schemas = require("schemastore").yaml.schemas(),
+					},
+				},
+			},
+			lua_ls = {
+				settings = { -- Override the default settings passed when initializing the server.
+					Lua = {
+						completion = {
+							callSnippet = "Replace",
+						},
 					},
 				},
 			},
@@ -80,11 +80,6 @@ return {
 					local server = servers[server_name] or {}
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 
-					-- ✅ Disable LSP formatting
-					server.on_attach = function(client, bufnr)
-						client.server_capabilities.documentFormattingProvider = false
-						client.server_capabilities.documentRangeFormattingProvider = false
-					end
 					require("lspconfig")[server_name].setup(server)
 				end,
 			},

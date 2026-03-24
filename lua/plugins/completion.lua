@@ -3,14 +3,36 @@ return {
 	version = "1.*",
 	event = "InsertEnter",
 	dependencies = {
-		"L3MON4D3/LuaSnip",
 		{ "folke/lazydev.nvim", ft = "lua" },
-		version = "v2.*",
-		config = function()
-			require("luasnip.loaders.from_vscode").lazy_load({ -- Load my snippets
-				paths = { "./snippets" },
-			})
-		end,
+		{
+			"L3MON4D3/LuaSnip",
+			version = "v2.*",
+			dependencies = { "rafamadriz/friendly-snippets" },
+			config = function()
+				require("luasnip").config.setup({})
+				require("luasnip.loaders.from_vscode").lazy_load({
+					include = {
+						"kotlin",
+						"java",
+						"dart",
+						"lua",
+						"python",
+						"bash",
+						"sh",
+						"json",
+						"yaml",
+						"toml",
+						"javascript",
+						"typescript",
+						"html",
+						"css",
+					},
+				})
+				require("luasnip.loaders.from_vscode").lazy_load({
+					paths = { vim.fn.stdpath("config") .. "/snippets" },
+				})
+			end,
+		},
 	},
 	opts = {
 		keymap = {
@@ -30,7 +52,7 @@ return {
 		completion = {
 			documentation = { auto_show = true },
 		},
-        signature = { enabled = false },
+		signature = { enabled = false },
 		sources = {
 			default = { "lsp", "path", "snippets", "buffer" },
 			per_filetype = {

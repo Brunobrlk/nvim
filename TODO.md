@@ -52,27 +52,11 @@
 - [x] suda.vim 0.38ms  start
 - [x] Flutter
 - [x] Lint / nvim-lint 0.04ms 󰢱 lint
-- [ ] diffview.nvim 1.33ms  start
-- [ ] nvim-colorizer.lua 2.39ms  V
-- [ ] vim-fugitive 1.03ms  start
 - [x] noice.nvim 1.42ms  VeryLazy
 - [x] nui.nvim 0.38ms - A library(Used by noice, neotree), mainly for plugins just like plenary
-
-- [ ] vim-tmux-navigator 0.49ms  s
-- [ ] lsp_signature.nvim 4.11ms  V
-- [ ] friendly-snippets 0.35ms  Lu
-- [ ] Bookmarks
-      function M.setup()
-      require("bookmarks").setup({
-      save_file = vim.fn.expand("$XDG_CONFIG_HOME/nvim-bookmarks"), -- Changed to nvim-bookmarks
-      keywords = {
-      ["@t"] = "☑️ ", -- mark annotation startswith @t ,signs this icon as `Todo`
-      ["@w"] = "⚠️ ", -- mark annotation startswith @w ,signs this icon as `Warn`
-      ["@f"] = "⛏ ", -- mark annotation startswith @f ,signs this icon as `Fix`
-      ["@n"] = " ", -- mark annotation startswith @n ,signs this icon as `Note`
-      },
-      })
-      end
+- [x] vim-tmux-navigator 0.49ms  s
+- [x] diffview.nvim 1.33ms  start
+- [x] friendly-snippets 0.35ms  Lu
 
 # Later
 
@@ -89,7 +73,7 @@
 - [ ] Fix: Signature and completion colliding
 - [ ] UX: Use w to navigate in neotree instead of a random command
 - [ ] Fix: difference between format on lunarvim vs neovim. One is using tabs or spaces
-- [ ] Shortcut ideas: Switch colorscheme: Toggle transparency/theme, markdown, mason, lsp, lazy, telescope, conform, del v-selection occurrences
+- [ ] Shortcut ideas: Switch colorscheme: Toggle transparency/theme, markdown, mason, lsp, lazy, telescope, conform, del v-selection occurrences, diffview
 - [x] Refactor: Migrate mappings to SSOT keymaps
   - [x] blink - internal only
   - [x] bufferline
@@ -128,7 +112,11 @@
 
 # Mine Don't use
 
+- [ ] lsp_signature.nvim 4.11ms  V
 - [ ] dressing.nvim 0.8ms  flutter
 - [ ] nvim-navic 0.88ms  User File
 - [ ] telescope-project.nvim 0.04ms
 - [ ] bigfile.nvim 1.45ms  BufRead
+- [ ] vim-fugitive 1.03ms  start
+- [ ] nvim-colorizer.lua 2.39ms  V
+- [ ] Bookmarks
