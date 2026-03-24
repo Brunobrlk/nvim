@@ -244,6 +244,65 @@ nmap("<M-3>", "<cmd>3ToggleTerm direction=float<CR>", "Terminal 3 (float)")
 tmap("<M-3>", [[<C-\><C-n><cmd>3ToggleTerm direction=float<CR>]], "Terminal 3 (float)")
 
 -- ======================
+-- DAP (Debug)
+-- ======================
+
+-- Alt + q - Throw Exception = Not Supported
+-- Alt + z - Enable/Disable line breakpoint = Not Supported
+-- Alt + a - View all break points = Not Supported
+-- Alt + f - Mute/Unmute all breakpoints = Not Supported
+
+-- Step into
+nmap("<A-w>", function()
+	require("dap").step_into()
+end, "DAP: Step Into")
+
+-- Evaluate expression
+nmap("<A-e>", function()
+	require("dapui").eval()
+end, "DAP: Eval")
+
+-- Resume / Continue
+nmap("<A-r>", function()
+	require("dap").continue()
+end, "DAP: Continue")
+
+-- Step over
+nmap("<A-s>", function()
+	require("dap").step_over()
+end, "DAP: Step Over")
+
+-- Step out (closest valid to "drop frame")
+nmap("<A-d>", function()
+	require("dap").step_out()
+end, "DAP: Step Out")
+
+-- REPL (closest valid "execution interaction")
+nmap("<A-x>", function()
+	require("dap").repl.open()
+end, "DAP: REPL")
+
+-- Run to cursor
+nmap("<A-c>", function()
+	require("dap").run_to_cursor()
+end, "DAP: Run to Cursor")
+
+-- Toggle breakpoint (line)
+nmap("<A-v>", function()
+	require("dap").toggle_breakpoint()
+end, "DAP: Toggle Breakpoint")
+
+-- Start / Select config
+nmap("<leader>rd", function()
+	require("dap").continue()
+end, "Run Debugging")
+
+-- Toggle UI manually
+nmap("<A-5>", function()
+	require("dapui").toggle()
+end, "DAP: Toggle UI")
+
+-- ======================
 -- LSP (buffer-local)
 -- ======================
 local M = {}

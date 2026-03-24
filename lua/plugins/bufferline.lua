@@ -14,9 +14,9 @@ return {
 			show_close_icon = true,
 			color_icons = true,
 			diagnostics = "nvim_lsp", -- Show LSP diagnostics
-			persist_buffer_sort = true,
+			persist_buffer_sort = false,
 			minimum_padding = 1,
-			maximum_padding = 5,
+			maximum_padding = 3,
 			maximum_length = 15,
 			offsets = {
 				{

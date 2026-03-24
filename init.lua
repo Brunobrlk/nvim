@@ -21,6 +21,7 @@ require("lazy").setup({
 	require("plugins.completion"),
 	require("plugins.conform"),
 	require("plugins.core"),
+	require("plugins.dap"),
 	require("plugins.flutter"),
 	require("plugins.git"),
 	require("plugins.illuminate"),

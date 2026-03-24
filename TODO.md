@@ -66,6 +66,7 @@
 - [x] Add: Shortcut to close all buffers left/right space+b then h/l
 - [x] Fix: Move line visual mode
 - [x] Finish: telescope config
+- [x] Refactor: Migrate mappings to SSOT keymaps
 - [x] Check: Ensure all and correct capabilities, diagnostics, clean mental model config(Lint, Format, LSP)
 - [ ] Add: Ideas for ftplugin
 - [ ] UX: neotree close empty folder
@@ -74,26 +75,7 @@
 - [ ] UX: Use w to navigate in neotree instead of a random command
 - [ ] Fix: difference between format on lunarvim vs neovim. One is using tabs or spaces
 - [ ] Shortcut ideas: Switch colorscheme: Toggle transparency/theme, markdown, mason, lsp, lazy, telescope, conform, del v-selection occurrences, diffview
-- [x] Refactor: Migrate mappings to SSOT keymaps
-  - [x] blink - internal only
-  - [x] bufferline
-  - [x] colorscheme
-  - [x] comment
-  - [x] conform
-  - [x] core
-  - [x] gitsigns
-  - [x] illuminate
-  - [x] lsp
-  - [x] lualine
-  - [x] markdown
-  - [x] mason
-  - [x] neotree - internal only
-  - [x] pyvenv
-  - [x] sessions
-  - [x] telescope
-  - [x] toggleterm
-  - [x] treesitter - internal only
-  - [x] whichkey
+- [ ] UX: Add keybindings for dap only when start debugging
 
 # LunarVim Don't use
 

@@ -27,8 +27,6 @@ return {
 				},
 			},
 			default_component_configs = {
-
-				-- INFO: Icons
 				icon = {
 					folder_closed = "",
 					folder_open = "",
@@ -88,7 +86,7 @@ return {
 			filesystem = {
 				filtered_items = {
 					visible = true,
-					hide_dotfiles = true,
+					hide_dotfiles = false,
 					hide_gitignored = false,
 					hide_ignored = false,
 				},
