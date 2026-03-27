@@ -35,20 +35,6 @@ return {
 		},
 	},
 	opts = {
-		keymap = {
-			preset = "default", -- set to 'none' to disable the 'default' preset
-			["<Up>"] = { "select_prev", "fallback" },
-			["<Down>"] = { "select_next", "fallback" },
-			["<C-e>"] = false, -- disable a keymap from the preset
-			["<C-space>"] = { -- show with a list of providers
-				function(cmp)
-					cmp.show({ providers = { "snippets" } })
-				end,
-			},
-			["<CR>"] = { "accept", "snippet_forward", "fallback" },
-			["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
-			["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
-		},
 		completion = {
 			documentation = { auto_show = true },
 		},
@@ -68,6 +54,30 @@ return {
 		},
 		snippets = { preset = "luasnip" },
 		cmdline = { enabled = true },
+		keymap = {
+			preset = "none",
+			["<Up>"] = { "select_prev", "fallback" },
+			["<Down>"] = { "select_next", "fallback" },
+			["<C-n>"] = { "select_next", "snippet_forward", "fallback" },
+			["<C-p>"] = { "select_prev", "snippet_backward", "fallback" },
+			["<CR>"] = { "accept", "fallback" },
+			["<Tab>"] = {
+				function(cmp) -- Only accept blink if no supermaven ghost text is visible
+					local ok, supermaven = pcall(require, "supermaven-nvim.completion_preview")
+					if ok and supermaven.has_suggestion() then
+						return false -- let supermaven handle it
+					end
+					return cmp.accept()
+				end,
+				"snippet_forward",
+				"fallback",
+			},
+			["<C-y>"] = {
+				function(cmp)
+					cmp.show({ providers = { "snippets" } })
+				end,
+			},
+		},
 	},
 	opts_extend = { "sources" }, -- Whatever parts of the options table you need to extend
 }
