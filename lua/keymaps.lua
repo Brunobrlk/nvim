@@ -1,30 +1,14 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+local utils = require("utils")
+
 local map = vim.keymap.set
-
--- ======================
--- Helpers (balanced)
--- ======================
-local function opts(desc, extra)
-	return vim.tbl_extend("force", { silent = true, desc = desc }, extra or {})
-end
-
-local function nmap(lhs, rhs, desc, extra)
-	map("n", lhs, rhs, opts(desc, extra))
-end
-
-local function imap(lhs, rhs, desc, extra)
-	map("i", lhs, rhs, opts(desc, extra))
-end
-
-local function vmap(lhs, rhs, desc, extra)
-	map("v", lhs, rhs, opts(desc, extra))
-end
-
-local function tmap(lhs, rhs, desc, extra)
-	map("t", lhs, rhs, opts(desc, extra))
-end
+local nmap = utils.nmap
+local imap = utils.imap
+local vmap = utils.vmap
+local tmap = utils.tmap
+local opts = utils.opts
 
 -- Disable space
 map({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
@@ -137,8 +121,8 @@ nmap("<leader>pv", "<cmd>VenvSelect<cr>", "Venv select")
 -- ======================
 -- Session
 -- ======================
-nmap("<leader>aa", "<cmd>AutoSession search<cr>", "[A]ll")
-nmap("<leader>as", "<cmd>AutoSession save<cr>", "[S]ave")
+-- nmap("<leader>aa", "<cmd>AutoSession search<cr>", "[A]ll")
+-- nmap("<leader>as", "<cmd>AutoSession save<cr>", "[S]ave")
 
 -- ======================
 -- Sudo
@@ -300,7 +284,7 @@ function M.setup_lsp_keymaps(buf, client)
 	local telescope = require("telescope.builtin")
 
 	local function lmap(mode, lhs, rhs, desc, extra)
-		map(mode, lhs, rhs, opts(desc, vim.tbl_extend("force", { buffer = buf }, extra or {})))
+		map(mode, lhs, rhs, utils.opts(desc, vim.tbl_extend("force", { buffer = buf }, extra or {})))
 	end
 
 	lmap("n", "<leader>lr", vim.lsp.buf.rename, "Rename")
