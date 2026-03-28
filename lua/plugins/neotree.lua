@@ -1,6 +1,6 @@
 return {
 	"nvim-neo-tree/neo-tree.nvim",
-	event = "VeryLazy",
+	event = "VimEnter",
 	branch = "v3.x",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
@@ -17,7 +17,7 @@ return {
 			},
 			disable_netrw = true,
 			hijack_netrw = true,
-			open_on_setup = false, -- Only open on command
+			open_on_setup = false,
 			open_on_resize = true,
 			close_if_last_window = true,
 			window = {

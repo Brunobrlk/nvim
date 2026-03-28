@@ -10,12 +10,26 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+	callback = function(event)
+		require("keymaps").setup_language_keymaps(event.buf)
+	end,
+})
+
 vim.api.nvim_create_user_command("DiagInfo", function()
 	vim.diagnostic.open_float({
 		source = true,
 	})
 end, {})
 
-vim.api.nvim_create_user_command("LspClients", function()
-	print(vim.inspect(vim.lsp.get_clients()))
-end, {})
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		require("persistence").load()
+		require("neo-tree.command").execute({
+			action = "show",
+			source = "filesystem",
+			position = "left",
+			reveal = true,
+		})
+	end,
+})

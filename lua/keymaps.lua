@@ -16,7 +16,7 @@ map({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 -- ======================
 -- General
 -- ======================
-imap("jk", "<ESC>", "Exit Insert Mode") -- Common, fast exit from insert mode
+imap("jk", "<ESC>", "Exit Insert Mode") -- Fast exit from insert mode
 
 nmap("<C-k>", "<cmd>wincmd k<cr>", "Window up")
 nmap("<C-j>", "<cmd>wincmd j<cr>", "Window down")
@@ -24,13 +24,11 @@ nmap("<C-h>", "<cmd>wincmd h<cr>", "Window left")
 nmap("<C-l>", "<cmd>wincmd l<cr>", "Window right")
 
 nmap("<leader>e", "<cmd>Neotree toggle<cr>", "Explorer")
-
-nmap("<leader>q", "<cmd>quit<cr>", "Quit")
-nmap("<leader>w", "<cmd>w<cr>", "Save")
-nmap("<leader>Q", "<cmd>quitall<cr>", "Quit all")
 nmap("<leader>h", "<cmd>nohlsearch<CR>", "No highlight")
+nmap("<leader>q", "<cmd>quit<cr>", "Quit")
+nmap("<leader>Q", "<cmd>quitall<cr>", "Quit all")
+nmap("<leader>w", "<cmd>w<cr>", "Save")
 
--- Comment.nvim (requires remap)
 nmap("<leader>/", "gcc", "Toggle comment", { remap = true })
 vmap("<leader>/", "gc", "Toggle comment", { remap = true })
 
@@ -49,16 +47,24 @@ vmap("<M-k>", function()
 	require("mini.move").move_selection("up")
 end)
 
--- ======================
 -- TmuxNavigator
--- ======================
 nmap("<C-h>", "<cmd>TmuxNavigateLeft<CR>")
 nmap("<C-j>", "<cmd>TmuxNavigateDown<CR>")
 nmap("<C-k>", "<cmd>TmuxNavigateUp<CR>")
 nmap("<C-l>", "<cmd>TmuxNavigateRight<CR>")
 
+-- ToggleTerm
+nmap("<M-1>", "<cmd>1ToggleTerm direction=horizontal<CR>", "Terminal 1 (horizontal)")
+tmap("<M-1>", [[<C-\><C-n><cmd>1ToggleTerm direction=horizontal<CR>]], "Terminal 1 (horizontal)")
+
+nmap("<M-2>", "<cmd>2ToggleTerm direction=vertical<CR>", "Terminal 2 (vertical)")
+tmap("<M-2>", [[<C-\><C-n><cmd>2ToggleTerm direction=vertical<CR>]], "Terminal 2 (vertical)")
+
+nmap("<M-3>", "<cmd>3ToggleTerm direction=float<CR>", "Terminal 3 (float)")
+tmap("<M-3>", [[<C-\><C-n><cmd>3ToggleTerm direction=float<CR>]], "Terminal 3 (float)")
+
 -- ======================
--- Gitsigns
+-- [G]itsigns
 -- ======================
 nmap(
 	"]c",
@@ -97,43 +103,49 @@ nmap("<leader>gw", "<cmd>lua require('gitsigns').toggle_word_diff()<CR>", "Toggl
 map({ "o", "x" }, "gh", "<cmd>lua require('gitsigns').select_hunk()<CR>", opts("Select Hunk"))
 
 -- ======================
--- Flutter
+-- [R]un
 -- ======================
-nmap("<leader>fc", "<cmd>FlutterCopyProfilerUrl<cr>", "Copy Profiler Url")
-nmap("<leader>fC", "<cmd>Telescope flutter commands<CR>", "Commands")
-nmap("<leader>fd", "<cmd>FlutterDevices<cr>", "Devices")
-nmap("<leader>fe", "<cmd>FlutterEmulators<cr>", "Emulators")
-nmap("<leader>fh", "<cmd>FlutterReload<cr>", "Hot Reload")
-nmap("<leader>fH", "<cmd>FlutterRestart<cr>", "Hot Restart")
-nmap("<leader>fl", "<cmd>FlutterLogToggle<cr>", "Log Toggle")
-nmap("<leader>fo", "<cmd>FlutterOutlineToggle<cr>", "Outline")
-nmap("<leader>fp", "<cmd>FlutterPubGet<cr>", "Pub Get")
-nmap("<leader>fq", "<cmd>FlutterQuit<cr>", "Quit")
-nmap("<leader>fr", "<cmd>FlutterRun<cr>", "Run")
-nmap("<leader>ft", "<cmd>FlutterDevTools<cr>", "Dev Tools")
-nmap("<leader>fx", "<cmd>FlutterLogClear<cr>", "Log Clear")
+local flutter_mappings = function()
+	nmap("<leader>rc", "<cmd>FlutterCopyProfilerUrl<cr>", "Flutter: Copy Profiler Url")
+	nmap("<leader>rC", "<cmd>Telescope flutter commands<CR>", "Flutter: Commands")
+	nmap("<leader>rd", "<cmd>FlutterDevices<cr>", "Flutter: Devices")
+	nmap("<leader>re", "<cmd>FlutterEmulators<cr>", "Flutter: Emulators")
+	nmap("<leader>rh", "<cmd>FlutterReload<cr>", "Flutter: Hot Reload")
+	nmap("<leader>rH", "<cmd>FlutterRestart<cr>", "Flutter: Hot Restart")
+	nmap("<leader>rl", "<cmd>FlutterLogToggle<cr>", "Flutter: Log Toggle")
+	nmap("<leader>ro", "<cmd>FlutterOutlineToggle<cr>", "Flutter: Outline")
+	nmap("<leader>rp", "<cmd>FlutterPubGet<cr>", "Flutter: Pub Get")
+	nmap("<leader>rq", "<cmd>FlutterQuit<cr>", "Flutter: Quit")
+	nmap("<leader>rr", "<cmd>FlutterRun<cr>", "Flutter: Run")
+	nmap("<leader>rt", "<cmd>FlutterDevTools<cr>", "Flutter: Dev Tools")
+	nmap("<leader>rx", "<cmd>FlutterLogClear<cr>", "Flutter: Log Clear")
+end
+
+local python_mappings = function()
+	nmap("<leader>rv", "<cmd>VenvSelect<cr>", "Python: Venv select")
+end
+
+local languages_registry = { -- Trigger keymaps per filetype
+	python = python_mappings,
+	dart = flutter_mappings,
+}
 
 -- ======================
--- Python
+-- [P]ersistence
 -- ======================
-nmap("<leader>pv", "<cmd>VenvSelect<cr>", "Venv select")
+nmap("<leader>ps", "<cmd>lua require('persistence').select()<cr>", "[S]elect")
+nmap("<leader>pc", "<cmd>lua require('persistence').load()<cr>", "[C]urrent")
+nmap("<leader>pl", "<cmd>lua require('persistence').load({ last = true })<cr>", "[L]ast")
 
 -- ======================
--- Session
--- ======================
--- nmap("<leader>aa", "<cmd>AutoSession search<cr>", "[A]ll")
--- nmap("<leader>as", "<cmd>AutoSession save<cr>", "[S]ave")
-
--- ======================
--- Sudo
+-- [S]udo
 -- ======================
 nmap("<leader>Sw", "<cmd>SudaWrite<CR>", "Save with Sudo")
 nmap("<leader>Sr", "<cmd>SudaRead<CR>", "Open with Sudo")
 
 -- ======================
--- Telescope
+-- [S]earch Telescope
 -- ======================
--- Search
 nmap("<leader>sb", "<cmd>lua require('telescope.builtin').buffers()<CR>", "[S]earch [B]uffers")
 nmap("<leader>sc", "<cmd>Telescope commands<cr>", "[S]earch [C]ommands")
 nmap("<leader>sd", "<cmd>lua require('telescope.builtin').diagnostics()<CR>", "[S]earch [D]iagnostics")
@@ -156,7 +168,9 @@ nmap("<leader>sn", function()
 	})
 end, "[S]earch [N]eovim files")
 
--- Integrations
+-- ======================
+-- [T]elescope Integrations
+-- ======================
 nmap("<leader>tb", "<cmd>Telescope bookmarks list<cr>", "Bookmarks")
 nmap("<leader>tp", "<cmd>Telescope projects<CR>", "Recent Projects")
 nmap("<leader>tP", "<cmd>Telescope project<CR>", "Select Project")
@@ -170,7 +184,7 @@ nmap("<leader>tc", function()
 end, "Cheatsheet")
 
 -- ======================
--- Buffer Actions
+-- [B]uffer Actions
 -- ======================
 nmap(
 	"<leader>bf",
@@ -191,7 +205,7 @@ nmap("<leader>c", function()
 end, "Close buffer")
 
 -- ======================
--- Trouble
+-- [Y] Trouble
 -- ======================
 nmap("<leader>yx", "<cmd>Trouble diagnostics toggle<cr>", "Diagnostics")
 nmap("<leader>yX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", "Buffer Diagnostics")
@@ -201,25 +215,8 @@ nmap("<leader>ys", "<cmd>Trouble symbols toggle focus=false<cr>", "Symbols")
 nmap("<leader>yl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", "LSP References")
 
 -- ======================
--- ToggleTerm
--- ======================
-
--- Terminal 1 (horizontal)
-nmap("<M-1>", "<cmd>1ToggleTerm direction=horizontal<CR>", "Terminal 1 (horizontal)")
-tmap("<M-1>", [[<C-\><C-n><cmd>1ToggleTerm direction=horizontal<CR>]], "Terminal 1 (horizontal)")
-
--- Terminal 2 (vertical)
-nmap("<M-2>", "<cmd>2ToggleTerm direction=vertical<CR>", "Terminal 2 (vertical)")
-tmap("<M-2>", [[<C-\><C-n><cmd>2ToggleTerm direction=vertical<CR>]], "Terminal 2 (vertical)")
-
--- Terminal 3 (float)
-nmap("<M-3>", "<cmd>3ToggleTerm direction=float<CR>", "Terminal 3 (float)")
-tmap("<M-3>", [[<C-\><C-n><cmd>3ToggleTerm direction=float<CR>]], "Terminal 3 (float)")
-
--- ======================
 -- DAP (Debug)
 -- ======================
-
 -- Alt + q - Throw Exception = Not Supported
 -- Alt + z - Enable/Disable line breakpoint = Not Supported
 -- Alt + a - View all break points = Not Supported
@@ -276,7 +273,7 @@ nmap("<A-5>", function()
 end, "DAP: Toggle UI")
 
 -- ======================
--- LSP (buffer-local)
+-- [L]SP
 -- ======================
 local M = {}
 
@@ -313,6 +310,22 @@ function M.setup_lsp_keymaps(buf, client)
 			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = buf }))
 		end, "Toggle Inlay Hints")
 	end
+end
+
+function M.setup_language_keymaps(buf)
+	if vim.b[buf].keymaps_loaded then -- prevent duplicate execution
+		return
+	end
+	vim.b[buf].keymaps_loaded = true
+
+	local ft = vim.bo[buf].filetype
+	local fn = languages_registry[ft]
+
+	if not fn then
+		return
+	end
+
+	fn()
 end
 
 return M
