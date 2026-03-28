@@ -133,8 +133,8 @@ local languages_registry = { -- Trigger keymaps per filetype
 -- ======================
 -- [P]ersistence
 -- ======================
-nmap("<leader>ps", "<cmd>lua require('persistence').select()<cr>", "[S]elect")
-nmap("<leader>pc", "<cmd>lua require('persistence').load()<cr>", "[C]urrent")
+nmap("<leader>pa", "<cmd>lua require('persistence').select()<cr>", "[A]ll Sessions")
+nmap("<leader>pc", "<cmd>lua require('persistence').load()<cr>", "[C]urrent dir")
 nmap("<leader>pl", "<cmd>lua require('persistence').load({ last = true })<cr>", "[L]ast")
 
 -- ======================
