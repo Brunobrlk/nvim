@@ -24,12 +24,17 @@ end, {})
 
 vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function()
-		require("persistence").load()
-		require("neo-tree.command").execute({
-			action = "show",
-			source = "filesystem",
-			position = "left",
-			reveal = true,
-		})
+		vim.schedule(function()
+			if vim.fn.argc() == 0 then
+				require("persistence").load()
+			end
+
+			require("neo-tree.command").execute({
+				action = "show",
+				source = "filesystem",
+				position = "left",
+				reveal = true,
+			})
+		end)
 	end,
 })
