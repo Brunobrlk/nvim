@@ -29,12 +29,12 @@ return {
 			},
 		},
 		interactions = {
-			chat = { adapter = "ollama_remote" },
-			inline = { adapter = "ollama_remote" },
+			chat = { adapter = "ollama" },
+			inline = { adapter = "ollama" },
 		},
 		strategies = {
 			chat = {
-				adapter = "gemini",
+				adapter = "ollama",
 				tools = {
 					["mcp"] = {
 						callback = function()
@@ -45,8 +45,8 @@ return {
 					},
 				},
 			},
-			inline = { adapter = "gemini" },
-			agent = { adapter = "gemini" },
+			inline = { adapter = "ollama" },
+			agent = { adapter = "ollama" },
 		},
 		display = {
 			chat = {

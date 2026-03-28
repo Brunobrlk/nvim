@@ -64,6 +64,12 @@ nmap("<M-3>", "<cmd>3ToggleTerm direction=float<CR>", "Terminal 3 (float)")
 tmap("<M-3>", [[<C-\><C-n><cmd>3ToggleTerm direction=float<CR>]], "Terminal 3 (float)")
 
 -- ======================
+-- [A]I
+-- ======================
+nmap("<leader>aa", "<cmd>CodeCompanionActions<cr>", "[A]ctions")
+nmap("<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", "[C]hat")
+
+-- ======================
 -- [G]itsigns
 -- ======================
 nmap(

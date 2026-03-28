@@ -28,13 +28,19 @@ vim.api.nvim_create_autocmd("VimEnter", {
 			if vim.fn.argc() == 0 then
 				require("persistence").load()
 			end
-
-			require("neo-tree.command").execute({
-				action = "show",
-				source = "filesystem",
-				position = "left",
-				reveal = true,
-			})
 		end)
+	end,
+})
+
+vim.api.nvim_create_autocmd("User", {
+	pattern = "PersistenceLoadPost",
+	callback = function()
+		require("neo-tree.command").execute({
+			action = "show",
+			source = "filesystem",
+			position = "left",
+			reveal = true,
+			reveal_force_cwd = true, -- change cwd without asking if needed
+		})
 	end,
 })
