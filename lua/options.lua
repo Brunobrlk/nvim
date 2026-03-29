@@ -14,8 +14,8 @@ opt.laststatus = 3 -- Always show the status line (nvim-lualine)
 opt.pumheight = 10 -- Completion pop-up menu height
 
 -- Folding
-opt.foldmethod = "expr" -- Use expression for folding
-opt.foldexpr = "nvim_treesitter#foldexpr()" -- Treesitter-based folding
+opt.foldmethod = "manual" -- Use expression for folding
+opt.foldexpr = "0" -- Treesitter-based folding
 opt.foldcolumn = "1" -- Show a small fold column
 opt.foldenable = false
 opt.foldlevelstart = 99 -- Start with no folds open
@@ -95,5 +95,3 @@ opt.hidden = true -- Allow unsaved buffers to be hidden
 opt.cmdheight = 1 -- Command line height
 opt.showmode = false -- Don't show -- INSERT -- etc. in the command line. statusline handles it
 opt.showcmd = false
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
