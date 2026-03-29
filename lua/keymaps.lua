@@ -70,6 +70,27 @@ nmap("<leader>aa", "<cmd>CodeCompanionActions<cr>", "[A]ctions")
 nmap("<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", "[C]hat")
 
 -- ======================
+-- [B]uffer Actions
+-- ======================
+nmap(
+	"<leader>bf",
+	"<cmd>lua require('conform').format({ async = true, lsp_fallback = true })<cr>",
+	"[B]uffer [F]ormat (Conform)"
+)
+nmap("<leader>bh", "<cmd>BufferLineCloseLeft<CR>", "Close Left")
+nmap("<leader>bl", "<cmd>BufferLineCloseRight<CR>", "Close Right")
+
+nmap("<M-l>", "<cmd>BufferLineCycleNext<CR>", "Next Buffer")
+nmap("<M-h>", "<cmd>BufferLineCyclePrev<CR>", "Previous Buffer")
+nmap("<M-x>", function()
+	require("mini.bufremove").delete(0, false)
+end, "Close buffer")
+
+nmap("<leader>c", function()
+	require("mini.bufremove").delete(0, false)
+end, "Close buffer")
+
+-- ======================
 -- [G]itsigns
 -- ======================
 nmap(
@@ -109,6 +130,13 @@ nmap("<leader>gw", "<cmd>lua require('gitsigns').toggle_word_diff()<CR>", "Toggl
 map({ "o", "x" }, "gh", "<cmd>lua require('gitsigns').select_hunk()<CR>", opts("Select Hunk"))
 
 -- ======================
+-- [P]ersistence
+-- ======================
+nmap("<leader>pa", "<cmd>lua require('persistence').select()<cr>", "[A]ll Sessions")
+nmap("<leader>pc", "<cmd>lua require('persistence').load()<cr>", "[C]urrent dir")
+nmap("<leader>pl", "<cmd>lua require('persistence').load({ last = true })<cr>", "[L]ast")
+
+-- ======================
 -- [R]un
 -- ======================
 local flutter_mappings = function()
@@ -129,6 +157,7 @@ end
 
 local python_mappings = function()
 	nmap("<leader>rv", "<cmd>VenvSelect<cr>", "Python: Venv select")
+	dap_support()
 end
 
 local languages_registry = { -- Trigger keymaps per filetype
@@ -136,12 +165,62 @@ local languages_registry = { -- Trigger keymaps per filetype
 	dart = flutter_mappings,
 }
 
--- ======================
--- [P]ersistence
--- ======================
-nmap("<leader>pa", "<cmd>lua require('persistence').select()<cr>", "[A]ll Sessions")
-nmap("<leader>pc", "<cmd>lua require('persistence').load()<cr>", "[C]urrent dir")
-nmap("<leader>pl", "<cmd>lua require('persistence').load({ last = true })<cr>", "[L]ast")
+-- DAP (Debug)
+-- Alt + q - Throw Exception = Not Supported
+-- Alt + z - Enable/Disable line breakpoint = Not Supported
+-- Alt + a - View all break points = Not Supported
+-- Alt + f - Mute/Unmute all breakpoints = Not Supported
+function dap_support()
+	-- Step into
+	nmap("<A-w>", function()
+		require("dap").step_into()
+	end, "DAP: Step Into")
+
+	-- Evaluate expression
+	nmap("<A-e>", function()
+		require("dapui").eval()
+	end, "DAP: Eval")
+
+	-- Resume / Continue
+	nmap("<A-r>", function()
+		require("dap").continue()
+	end, "DAP: Continue")
+
+	-- Step over
+	nmap("<A-s>", function()
+		require("dap").step_over()
+	end, "DAP: Step Over")
+
+	-- Step out (closest valid to "drop frame")
+	nmap("<A-d>", function()
+		require("dap").step_out()
+	end, "DAP: Step Out")
+
+	-- REPL (closest valid "execution interaction")
+	nmap("<A-x>", function()
+		require("dap").repl.open()
+	end, "DAP: REPL")
+
+	-- Run to cursor
+	nmap("<A-c>", function()
+		require("dap").run_to_cursor()
+	end, "DAP: Run to Cursor")
+
+	-- Toggle breakpoint (line)
+	nmap("<A-v>", function()
+		require("dap").toggle_breakpoint()
+	end, "DAP: Toggle Breakpoint")
+
+	-- Start / Select config
+	nmap("<leader>rd", function()
+		require("dap").continue()
+	end, "Run Debugging")
+
+	-- Toggle UI manually
+	nmap("<A-5>", function()
+		require("dapui").toggle()
+	end, "DAP: Toggle UI")
+end
 
 -- ======================
 -- [S]udo
@@ -178,8 +257,6 @@ end, "[S]earch [N]eovim files")
 -- [T]elescope Integrations
 -- ======================
 nmap("<leader>tb", "<cmd>Telescope bookmarks list<cr>", "Bookmarks")
-nmap("<leader>tp", "<cmd>Telescope projects<CR>", "Recent Projects")
-nmap("<leader>tP", "<cmd>Telescope project<CR>", "Select Project")
 nmap("<leader>tn", "<cmd>NoiceTelescope<CR>", "Noice Messages")
 
 nmap("<leader>tc", function()
@@ -190,27 +267,6 @@ nmap("<leader>tc", function()
 end, "Cheatsheet")
 
 -- ======================
--- [B]uffer Actions
--- ======================
-nmap(
-	"<leader>bf",
-	"<cmd>lua require('conform').format({ async = true, lsp_fallback = true })<cr>",
-	"[B]uffer [F]ormat (Conform)"
-)
-nmap("<leader>bh", "<cmd>BufferLineCloseLeft<CR>", "Close Left")
-nmap("<leader>bl", "<cmd>BufferLineCloseRight<CR>", "Close Right")
-
-nmap("<M-l>", "<cmd>BufferLineCycleNext<CR>", "Next Buffer")
-nmap("<M-h>", "<cmd>BufferLineCyclePrev<CR>", "Previous Buffer")
-nmap("<M-x>", function()
-	require("mini.bufremove").delete(0, false)
-end, "Close buffer")
-
-nmap("<leader>c", function()
-	require("mini.bufremove").delete(0, false)
-end, "Close buffer")
-
--- ======================
 -- [Y] Trouble
 -- ======================
 nmap("<leader>yx", "<cmd>Trouble diagnostics toggle<cr>", "Diagnostics")
@@ -219,64 +275,6 @@ nmap("<leader>yL", "<cmd>Trouble loclist toggle<cr>", "Location List")
 nmap("<leader>yQ", "<cmd>Trouble qflist toggle<cr>", "Quickfix List")
 nmap("<leader>ys", "<cmd>Trouble symbols toggle focus=false<cr>", "Symbols")
 nmap("<leader>yl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", "LSP References")
-
--- ======================
--- DAP (Debug)
--- ======================
--- Alt + q - Throw Exception = Not Supported
--- Alt + z - Enable/Disable line breakpoint = Not Supported
--- Alt + a - View all break points = Not Supported
--- Alt + f - Mute/Unmute all breakpoints = Not Supported
-
--- Step into
-nmap("<A-w>", function()
-	require("dap").step_into()
-end, "DAP: Step Into")
-
--- Evaluate expression
-nmap("<A-e>", function()
-	require("dapui").eval()
-end, "DAP: Eval")
-
--- Resume / Continue
-nmap("<A-r>", function()
-	require("dap").continue()
-end, "DAP: Continue")
-
--- Step over
-nmap("<A-s>", function()
-	require("dap").step_over()
-end, "DAP: Step Over")
-
--- Step out (closest valid to "drop frame")
-nmap("<A-d>", function()
-	require("dap").step_out()
-end, "DAP: Step Out")
-
--- REPL (closest valid "execution interaction")
-nmap("<A-x>", function()
-	require("dap").repl.open()
-end, "DAP: REPL")
-
--- Run to cursor
-nmap("<A-c>", function()
-	require("dap").run_to_cursor()
-end, "DAP: Run to Cursor")
-
--- Toggle breakpoint (line)
-nmap("<A-v>", function()
-	require("dap").toggle_breakpoint()
-end, "DAP: Toggle Breakpoint")
-
--- Start / Select config
-nmap("<leader>rd", function()
-	require("dap").continue()
-end, "Run Debugging")
-
--- Toggle UI manually
-nmap("<A-5>", function()
-	require("dapui").toggle()
-end, "DAP: Toggle UI")
 
 -- ======================
 -- [L]SP
