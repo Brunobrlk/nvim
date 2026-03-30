@@ -8,6 +8,8 @@ return {
 	config = function()
 		local avd = require("linecomp.avd")
 		local companion = require("linecomp.codecompanion")
+        local dev =  require("linecomp.dev")
+
 		require("lualine").setup({
 			options = {
 				theme = "auto",
@@ -23,7 +25,10 @@ return {
 				globalstatus = true,
 			},
 			sections = {
-				lualine_a = { "mode" },
+				lualine_a = {
+					{ dev.dev_indicator, color = { fg = "#000000", bg = "#A6E3A1", gui = "bold" } },
+					"mode",
+				},
 				lualine_b = { "branch" },
 				lualine_c = {
 					"diff",
