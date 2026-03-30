@@ -6,9 +6,8 @@ return {
 		{ dir = "~/Development/Projects/lualine-components.nvim" },
 	},
 	config = function()
-		local avd = require("lualine.components.android_device")
-		local cc = require("lualine.components.codecompanion")
-		cc.setup()
+		local avd = require("linecomp.avd")
+		local companion = require("linecomp.codecompanion")
 		require("lualine").setup({
 			options = {
 				theme = "auto", -- or your desired theme
@@ -56,7 +55,7 @@ return {
 					},
 				},
 				lualine_z = { "progress", "location" },
-				lualine_y = { cc.codecompanion_tokens, cc.codecompanion_model },
+				lualine_y = { companion.codecompanion_tokens, companion.codecompanion_model },
 			},
 			tabline = {},
 			extensions = {},
