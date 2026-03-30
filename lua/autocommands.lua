@@ -1,11 +1,10 @@
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(event)
-		local client = vim.lsp.get_client_by_id(event.data.client_id)
-		local bufnr = event.buf
-
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
 		client.server_capabilities.documentFormattingProvider = false
 		client.server_capabilities.documentRangeFormattingProvider = false
 
+        local bufnr = event.buf
 		require("keymaps").setup_lsp_keymaps(bufnr, client)
 	end,
 })

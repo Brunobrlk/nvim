@@ -36,7 +36,7 @@ opt.scrolloff = 8 -- Lines above/below cursor to keep visible
 opt.sidescrolloff = 8 -- Columns left/right of cursor to keep visible
 
 -- Wrapping
-opt.wrap = true -- Wrap long lines (from your config)
+opt.wrap = true -- Wrap long lines
 opt.linebreak = true
 
 -- Mouse
@@ -56,7 +56,7 @@ opt.shiftwidth = 4 -- Amount of space to indent in (e.g., for autoindent, <<, >>
 opt.expandtab = true -- Use spaces instead of tabs
 opt.softtabstop = 4
 opt.smartindent = false -- Smart indent
-opt.autoindent = true -- Auto indent new lines (from your config)
+opt.autoindent = true -- Auto indent new lines
 
 -- Searching
 opt.ignorecase = true -- Case-insensitive search
@@ -83,10 +83,10 @@ opt.completeopt = { "menu", "menuone", "noselect" }
 -- whitespace format
 opt.list = true
 opt.listchars = {
+	tab = "»·",
+	trail = "·",
 	extends = "→",
 	precedes = "←",
-	tab = "  ",
-	trail = "·",
 	nbsp = "␣",
 }
 

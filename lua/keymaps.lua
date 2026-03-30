@@ -68,6 +68,9 @@ tmap("<M-3>", [[<C-\><C-n><cmd>3ToggleTerm direction=float<CR>]], "Terminal 3 (f
 -- ======================
 nmap("<leader>aa", "<cmd>CodeCompanionActions<cr>", "[A]ctions")
 nmap("<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", "[C]hat")
+nmap("<leader>ae", "<cmd>CodeCompanionChat <cr>", "[E]xplain")
+nmap("<leader>ai", "<cmd>CodeCompanionChat <cr>", "[I]nline")
+nmap("<leader>ap", "<cmd>CodeCompanionChat <cr>", "[P]rompts")
 
 -- ======================
 -- [B]uffer Actions
@@ -292,7 +295,7 @@ function M.setup_lsp_keymaps(buf, client)
 	lmap({ "n", "x" }, "<leader>la", vim.lsp.buf.code_action, "Code Action")
 
 	lmap("n", "<leader>lf", function()
-		require("conform").format({ async = true, lsp_fallback = true })
+		require("conform").format({ async = true })
 	end, "Format (Conform)")
 
 	lmap("n", "<leader>lX", "<cmd>LspRestart<cr>", "Restart LSP")
