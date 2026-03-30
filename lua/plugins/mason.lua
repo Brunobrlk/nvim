@@ -41,7 +41,7 @@ return {
 					"ktlint",
 					"ruff",
 				},
-				automatic_installation = true, -- Automatically installs missing LSPs
+				automatic_installation = true,
 			})
 		end,
 	},

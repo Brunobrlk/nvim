@@ -2,7 +2,7 @@ return {
 	"neovim/nvim-lspconfig",
 	dependencies = { "b0o/schemastore.nvim", "saghen/blink.cmp" },
 	config = function()
-		vim.diagnostic.config({ -- Diagnostic Config. See :help vim.diagnostic.Opts
+		vim.diagnostic.config({ -- See :help vim.diagnostic.Opts
 			severity_sort = true,
 			float = { border = "rounded", source = "if_many" },
 			underline = { severity = vim.diagnostic.severity.ERROR },

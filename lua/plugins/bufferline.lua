@@ -13,7 +13,7 @@ return {
 			tab_size = 20,
 			show_close_icon = true,
 			color_icons = true,
-			diagnostics = "nvim_lsp", -- Show LSP diagnostics
+			diagnostics = "nvim_lsp",
 			persist_buffer_sort = false,
 			minimum_padding = 1,
 			maximum_padding = 3,
@@ -22,7 +22,7 @@ return {
 				{
 					filetype = "neo-tree",
 					text = "Explorer",
-					text_align = "center", -- test left
+					text_align = "center",
 					separator = true,
 				},
 			},

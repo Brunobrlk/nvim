@@ -9,6 +9,6 @@ vim.filetype.add({
         ["Scanfile"]       = "ruby",
         ["Screengrabfile"] = "ruby",
         ["Snapfile"]       = "ruby",
-        ["Podfile"]        = "ruby", -- CocoaPods, bonus
+        ["Podfile"]        = "ruby",
     },
 })

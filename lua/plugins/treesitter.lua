@@ -24,23 +24,18 @@ return {
 				"html",
 				"css",
 				"javascript",
-				-- Add any other parsers you want here
 			},
-			sync_install = false, -- Install parsers asynchronously
-			auto_install = true, -- Automatically install missing parsers
+			sync_install = false,
+			auto_install = true,
 			highlight = {
-				enable = true, -- Enable syntax highlighting
+				enable = true,
 				additional_vim_regex_highlighting = false,
 			},
-			indent = { enable = true }, -- Enable indentation based on treesitter
+			indent = { enable = true },
 			textobjects = {
 				select = {
 					enable = true,
 					lookahead = true, -- Strip whitespace in textobjects
-					keymaps = {
-						-- You can add your own text object keymaps here
-						-- e.g., for 'a', 'i', 'f', 'F'
-					},
 				},
 				swap = {
 					enable = true,
@@ -53,7 +48,7 @@ return {
 				},
 				move = {
 					enable = true,
-					set_jumps = true, -- Whether to set jumps in the jumplist in the built-in jump action.
+					set_jumps = true,
 					goto_next_start = {
 						["]f"] = "@function.outer",
 						["]c"] = "@class.outer",

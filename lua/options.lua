@@ -5,7 +5,7 @@ local g = vim.g
 opt.encoding = "utf-8" -- Set default encoding to UTF-8
 opt.fileencoding = "utf-8" -- File encoding
 opt.backspace = "indent,eol,start" -- Allow backspace over anything
-vim.opt.fillchars = { eob = " " }
+opt.fillchars = { eob = " " }
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 
 -- UI Options

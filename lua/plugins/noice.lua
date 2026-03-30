@@ -9,7 +9,7 @@ return {
 		},
 		messages = {
 			enabled = true,
-			view = "notify", -- integrates with nvim-notify if present
+			view = "notify",
 			view_error = "notify",
 			view_warn = "notify",
 		},

@@ -10,7 +10,7 @@ return {
 		local companion = require("linecomp.codecompanion")
 		require("lualine").setup({
 			options = {
-				theme = "auto", -- or your desired theme
+				theme = "auto",
 				icons_enabled = true,
 				section_separators = { left = "", right = "" },
 				component_separators = { left = "", right = "" },
@@ -44,14 +44,14 @@ return {
 					"encoding",
 					{
 						"lsp_status",
-						icon = "", -- f013
+						icon = "",
 						symbols = {
-							spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }, -- Unicode symbols to cycle through for LSP progress
-							done = "✓", -- Standard unicode symbol for when LSP is done
-							separator = " ", -- Delimiter inserted between LSP names
+							spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
+							done = "✓",
+							separator = " ",
 						},
-						ignore_lsp = {}, -- List of LSP names to ignore (e.g., `null-ls`):
-						show_name = true, -- Display the LSP name
+						ignore_lsp = {},
+						show_name = true,
 					},
 				},
 				lualine_z = { "progress", "location" },
