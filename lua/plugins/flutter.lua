@@ -1,11 +1,8 @@
 return {
 	"nvim-flutter/flutter-tools.nvim",
-	lazy = false, -- Often needs to load early for LSP setup
-	dependencies = {
-		"nvim-lua/plenary.nvim",
-		{ dir = "~/Development/Projects/nvim-android-device" },
-	},
-	ft = { "dart" }, -- Only load for Dart files
+	lazy = false,
+	dependencies = { "nvim-lua/plenary.nvim" },
+	ft = { "dart" },
 	config = function()
 		require("flutter-tools").setup({
 			decorations = {
