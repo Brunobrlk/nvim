@@ -28,6 +28,30 @@ nmap("<leader>h", "<cmd>nohlsearch<CR>", "No highlight")
 nmap("<leader>q", "<cmd>quit<cr>", "Quit")
 nmap("<leader>Q", "<cmd>quitall<cr>", "Quit all")
 nmap("<leader>w", "<cmd>w<cr>", "Save")
+local function reveal_current_file_in_neotree()
+	local current_buf = vim.api.nvim_get_current_buf()
+	local buftype = vim.bo[current_buf].buftype
+	local filepath = vim.api.nvim_buf_get_name(current_buf)
+
+	if buftype ~= "" or filepath == "" then
+		return
+	end
+
+	local ok, command = pcall(require, "neo-tree.command")
+	if not ok then
+		return
+	end
+
+	command.execute({
+		action = "focus",
+		source = "filesystem",
+		position = "left",
+		reveal_file = filepath,
+		focus = true,
+	})
+end
+
+nmap("<C-A-l>", reveal_current_file_in_neotree, "Reveal current file in Neo-tree")
 
 nmap("<leader>/", "gcc", "Toggle comment", { remap = true })
 vmap("<leader>/", "gc", "Toggle comment", { remap = true })
