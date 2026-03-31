@@ -40,6 +40,22 @@ return {
 						},
 					})
 				end,
+				groq = function()
+					return require("codecompanion.adapters").extend("openai_compatible", {
+						name = "groq",
+						env = {
+							url = "https://api.groq.com/openai",
+							api_key = "GROQ_API_KEY",
+							chat_url = "/v1/chat/completions",
+							models_endpoint = "/v1/models",
+						},
+						schema = {
+							model = {
+								default = "openai/gpt-oss-20b",
+							},
+						},
+					})
+				end,
 			},
 		},
 		extensions = {
