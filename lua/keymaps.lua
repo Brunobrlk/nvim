@@ -94,7 +94,8 @@ nmap("<leader>aa", "<cmd>CodeCompanionActions<cr>", "[A]ctions")
 nmap("<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", "[C]hat")
 nmap("<leader>ae", "<cmd>CodeCompanionChat <cr>", "[E]xplain")
 nmap("<leader>ai", "<cmd>CodeCompanionChat <cr>", "[I]nline")
-nmap("<leader>ap", "<cmd>CodeCompanionChat <cr>", "[P]rompts")
+nmap("<leader>ap", "<cmd>CodeCompanionChat <cr>", "[T]erminal")
+nmap("<leader>at", "<cmd>CodeCompanionCLI <cr>", "[P]rompts")
 
 -- ======================
 -- [B]uffer Actions

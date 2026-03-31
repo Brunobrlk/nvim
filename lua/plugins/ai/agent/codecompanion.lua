@@ -28,25 +28,34 @@ return {
 				end,
 			},
 		},
-		interactions = {
-			chat = { adapter = "ollama" },
-			inline = { adapter = "ollama" },
+		extensions = {
+			mcphub = {
+				callback = "mcphub.extensions.codecompanion",
+				opts = {
+					make_tools = true,
+					make_vars = true,
+					make_slash_commands = true,
+					show_result_in_chat = true,
+				},
+			},
 		},
-		strategies = {
+		interactions = {
 			chat = {
 				adapter = "ollama",
-				tools = {
-					["mcp"] = {
-						callback = function()
-							return require("mcphub.extensions.codecompanion")
-						end,
-						description = "Call MCP tools (filesystem, LSP, GitHub, web)",
-						opts = { requires_approval = true },
+			},
+			inline = {
+				adapter = "ollama",
+			},
+			cli = {
+				agent = "codex",
+				agents = {
+					codex = {
+						cmd = "codex",
+						args = {},
+						description = "OpenAI Codex CLI",
 					},
 				},
 			},
-			inline = { adapter = "ollama" },
-			agent = { adapter = "ollama" },
 		},
 		display = {
 			chat = {
