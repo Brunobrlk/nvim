@@ -10,6 +10,26 @@ return {
 	opts = {
 		adapters = {
 			http = {
+				gemini = function()
+					return require("codecompanion.adapters").extend("gemini", {
+						env = {
+							api_key = "GEMINI_API_KEY",
+						},
+						schema = {
+							model = {
+								default = "gemini-3.1-flash-preview",
+                                choices = {
+                                    "gemini-3.1-flash-lite-preview",
+                                    "gemini-3-flash-preview",
+                                    "gemini-2.5-pro",
+                                    "gemini-2.5-flash",
+                                    "gemini-2.5-flash-lite",
+                                    "gemini-2.5-flash-lite-preview-09-2025",
+                                }
+							},
+						},
+					})
+				end,
 				ollama_remote = function()
 					return require("codecompanion.adapters").extend("ollama", {
 						name = "ollama_remote",
@@ -21,7 +41,7 @@ return {
 							["Authorization"] = "Bearer ${api_key}",
 						},
 						schema = {
-							model = { default = "deepseek-coder:33b" },
+							model = { default = "glm-5" },
 							num_ctx = { default = 32768 },
 						},
 					})
@@ -36,6 +56,15 @@ return {
 						schema = {
 							model = {
 								default = "minimax/minimax-m2.5:free",
+								choices = {
+									"minimax/minimax-m2.5:free",
+									"qwen/qwen3-coder:free",
+									"openai/gpt-oss-120b:free",
+									"z-ai/glm-4.5-air:free",
+									"nvidia/nemotron-3-super-120b-a12b:free",
+									"stepfun/step-3.5-flash:free",
+									"qwen/qwen3.6-plus-preview:free",
+								},
 							},
 						},
 					})
@@ -56,6 +85,19 @@ return {
 						},
 					})
 				end,
+				mistral = function()
+					return require("codecompanion.adapters").extend("mistral", {
+						env = {
+							url = "https://api.mistral.ai",
+							api_key = "MISTRAL_API_KEY",
+						},
+						schema = {
+							model = {
+								default = "mistral-large-latest",
+							},
+						},
+					})
+				end,
 			},
 		},
 		extensions = {
@@ -71,10 +113,12 @@ return {
 		},
 		interactions = {
 			chat = {
-				adapter = "ollama",
+				adapter = "gemini",
+				model = "gemini-3.1-flash-lite-preview",
 			},
 			inline = {
-				adapter = "ollama",
+				adapter = "ollama_remote",
+				model = "glm-5",
 			},
 			cli = {
 				agent = "codex",
@@ -86,6 +130,10 @@ return {
 					},
 				},
 			},
+            cmd = {
+				adapter = "ollama_remote",
+				model = "glm-5",
+            },
 		},
 		display = {
 			chat = {
@@ -99,5 +147,6 @@ return {
 				provider = "mini_diff",
 			},
 		},
+        opts = {}
 	},
 }
