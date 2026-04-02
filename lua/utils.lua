@@ -46,6 +46,10 @@ end
 function M.tmap(lhs, rhs, desc, extra)
 	map("t", lhs, rhs, opts(desc, extra))
 end
+function M.nvmap(lhs, rhs, desc, extra)
+	map({ "n", "v" }, lhs, rhs, opts(desc, extra))
+end
+
 
 function M.opts(desc, extra)
 	return vim.tbl_extend("force", { silent = true, desc = desc }, extra or {})

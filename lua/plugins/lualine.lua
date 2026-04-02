@@ -9,6 +9,7 @@ return {
 		local avd = require("linecomp.avd")
 		local companion = require("linecomp.codecompanion")
         local dev =  require("linecomp.dev")
+        local companion_spinner =  require("linecomp.codecompanion_spinner")
 
 		require("lualine").setup({
 			options = {
@@ -60,7 +61,7 @@ return {
 					},
 				},
 				lualine_z = { "progress", "location" },
-				lualine_y = { companion.codecompanion_tokens, companion.codecompanion_model },
+				lualine_y = { companion_spinner, companion.codecompanion_tokens, companion.codecompanion_model },
 			},
 			tabline = {},
 			extensions = {},

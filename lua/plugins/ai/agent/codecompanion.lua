@@ -7,42 +7,35 @@ return {
 		"ravitemer/mcphub.nvim",
 		{ "MeanderingProgrammer/render-markdown.nvim", ft = { "codecompanion" } },
 	},
-	opts = {
+	opts = { -- defaults: https://github.com/olimorris/codecompanion.nvim/blob/main/lua/codecompanion/config.lua
 		adapters = {
 			http = {
 				gemini = function()
 					return require("codecompanion.adapters").extend("gemini", {
-						env = {
-							api_key = "GEMINI_API_KEY",
-						},
+						env = { api_key = "GEMINI_API_KEY" },
 						schema = {
 							model = {
-								default = "gemini-3.1-flash-preview",
-                                choices = {
-                                    "gemini-3.1-flash-lite-preview",
-                                    "gemini-3-flash-preview",
-                                    "gemini-2.5-pro",
-                                    "gemini-2.5-flash",
-                                    "gemini-2.5-flash-lite",
-                                    "gemini-2.5-flash-lite-preview-09-2025",
-                                }
+								default = "gemini-3-flash-preview",
+								choices = {
+									"gemini-3-flash-preview",
+									"gemini-2.5-pro",
+									"gemini-2.5-flash",
+									"gemini-2.5-flash-lite",
+									"gemini-2.5-flash-lite-preview-09-2025",
+								},
 							},
 						},
 					})
 				end,
 				ollama_remote = function()
 					return require("codecompanion.adapters").extend("ollama", {
-						name = "ollama_remote",
 						env = {
 							url = "https://ollama.com",
 							api_key = "OLLAMA_API_KEY",
 						},
-						headers = {
-							["Authorization"] = "Bearer ${api_key}",
-						},
+						headers = { ["Authorization"] = "Bearer ${api_key}" },
 						schema = {
 							model = { default = "glm-5" },
-							num_ctx = { default = 32768 },
 						},
 					})
 				end,
@@ -71,7 +64,6 @@ return {
 				end,
 				groq = function()
 					return require("codecompanion.adapters").extend("openai_compatible", {
-						name = "groq",
 						env = {
 							url = "https://api.groq.com/openai",
 							api_key = "GROQ_API_KEY",
@@ -79,9 +71,7 @@ return {
 							models_endpoint = "/v1/models",
 						},
 						schema = {
-							model = {
-								default = "openai/gpt-oss-20b",
-							},
+							model = { default = "openai/gpt-oss-20b" },
 						},
 					})
 				end,
@@ -92,12 +82,43 @@ return {
 							api_key = "MISTRAL_API_KEY",
 						},
 						schema = {
-							model = {
-								default = "mistral-large-latest",
-							},
+							model = { default = "mistral-large-latest" },
 						},
 					})
 				end,
+			},
+		},
+		interactions = {
+			chat = {
+				adapter = "gemini",
+				editor_context = {
+					["buffer"] = {
+						opts = {
+							default_params = "diff", -- Always sync the buffer by sharing its "diff"
+						},
+					},
+				},
+				tools = {
+					["mcp"] = {
+						callback = function()
+							return require("mcphub.extensions.codecompanion")
+						end,
+						description = "Call MCP tools (filesystem, LSP, GitHub, web)",
+						opts = { requires_approval = true },
+					},
+				},
+			},
+			inline = { adapter = "mistral" },
+			cmd = { adapter = "ollama_remote" },
+			cli = {
+				agent = "codex",
+				agents = {
+					codex = {
+						cmd = "codex",
+						args = {},
+						description = "OpenAI Codex CLI",
+					},
+				},
 			},
 		},
 		extensions = {
@@ -111,42 +132,21 @@ return {
 				},
 			},
 		},
-		interactions = {
-			chat = {
-				adapter = "gemini",
-				model = "gemini-3.1-flash-lite-preview",
-			},
-			inline = {
-				adapter = "ollama_remote",
-				model = "glm-5",
-			},
-			cli = {
-				agent = "codex",
-				agents = {
-					codex = {
-						cmd = "codex",
-						args = {},
-						description = "OpenAI Codex CLI",
-					},
-				},
-			},
-            cmd = {
-				adapter = "ollama_remote",
-				model = "glm-5",
-            },
-		},
 		display = {
 			chat = {
 				show_token_count = true,
 				show_tools_processing = true,
-			},
-			action_palette = {
-				provider = "default",
+				start_in_insert_mode = false,
+				intro_message = "CodeCompanion: ask, edit, execute | ? help | /prompts | #context | @tools | /acp_slash_cmd ",
 			},
 			diff = {
-				provider = "mini_diff",
+				enabled = true,
+				threshold_for_chat = 6, -- At or below this diff size, always display the diff in the chat buffer
+				word_highlights = {
+					additions = true,
+					deletions = true,
+				},
 			},
 		},
-        opts = {}
 	},
 }
