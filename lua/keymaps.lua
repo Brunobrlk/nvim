@@ -11,13 +11,11 @@ local tmap = utils.tmap
 local nvmap = utils.nvmap
 local opts = utils.opts
 
--- Disable space
-map({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
-
 -- ======================
 -- General
 -- ======================
-imap("jk", "<ESC>", "Exit Insert Mode") -- Fast exit from insert mode
+map({ "n", "v" }, "<Space>", "<Nop>", { silent = true }) -- Disable space, it's leader
+imap("jk", "<ESC>", "Exit Insert Mode")
 
 nmap("<C-k>", "<cmd>wincmd k<cr>", "Window up")
 nmap("<C-j>", "<cmd>wincmd j<cr>", "Window down")
