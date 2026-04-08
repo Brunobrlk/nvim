@@ -60,17 +60,21 @@ return {
 			["<Down>"] = { "select_next", "fallback" },
 			["<C-n>"] = { "select_next", "snippet_forward", "fallback" },
 			["<C-p>"] = { "select_prev", "snippet_backward", "fallback" },
-			["<CR>"] = { "accept", "fallback" },
 			["<Tab>"] = {
-				function(cmp) -- Only accept blink if no supermaven ghost text is visible
+				function(cmp)
+					-- Check for supermaven ghost text first
 					local ok, supermaven = pcall(require, "supermaven-nvim.completion_preview")
 					if ok and supermaven.has_suggestion() then
 						return false -- let supermaven handle it
 					end
-					return cmp.accept()
+
+					-- Accept blink-cmp suggestion if menu is visible with a selected item
+					if cmp.is_menu_visible() then
+						return cmp.accept()
+					end
+
+					return false
 				end,
-				"snippet_forward",
-				"fallback",
 			},
 			["<C-y>"] = {
 				function(cmp)

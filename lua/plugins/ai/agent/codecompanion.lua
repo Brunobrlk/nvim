@@ -39,6 +39,18 @@ return {
 						},
 					})
 				end,
+				ollama_remote_code = function()
+					return require("codecompanion.adapters").extend("ollama", {
+						env = {
+							url = "https://ollama.com",
+							api_key = "OLLAMA_API_KEY_CODE",
+						},
+						headers = { ["Authorization"] = "Bearer ${api_key}" },
+						schema = {
+							model = { default = "minimax-m2.7" }, -- glm-5, kimi2.5, MiniMaxM2.7(Faster, yet precise)
+						},
+					})
+				end,
 				openrouter = function()
 					return require("codecompanion.adapters").extend("openai_compatible", {
 						env = {
@@ -108,7 +120,7 @@ return {
 					},
 				},
 			},
-			inline = { adapter = "mistral" },
+			inline = { adapter = "ollama_remote_code" },
 			cmd = { adapter = "ollama_remote" },
 			cli = {
 				agent = "codex",
