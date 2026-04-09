@@ -5,7 +5,6 @@ local g = vim.g
 opt.encoding = "utf-8" -- Set default encoding to UTF-8
 opt.fileencoding = "utf-8" -- File encoding
 opt.backspace = "indent,eol,start" -- Allow backspace over anything
-opt.fillchars = { eob = " " }
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 
 -- UI Options
@@ -14,12 +13,7 @@ opt.laststatus = 3 -- Always show the status line (nvim-lualine)
 opt.pumheight = 10 -- Completion pop-up menu height
 
 -- Folding
-opt.foldmethod = "manual" -- Use expression for folding
-opt.foldexpr = "0" -- Treesitter-based folding
-opt.foldcolumn = "1" -- Show a small fold column
-opt.foldenable = false
-opt.foldlevelstart = 99 -- Start with no folds open
-opt.foldnestmax = 10 -- Maximum nesting of folds
+opt.foldnestmax = 1 -- Maximum nesting of folds
 
 -- Search
 opt.hlsearch = true -- Highlight search results

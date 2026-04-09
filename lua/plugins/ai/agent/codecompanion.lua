@@ -10,6 +10,9 @@ return {
 	opts = { -- defaults: https://github.com/olimorris/codecompanion.nvim/blob/main/lua/codecompanion/config.lua
 		adapters = {
 			http = {
+                opts = {
+                    show_presets = false
+                },
 				gemini = function()
 					return require("codecompanion.adapters").extend("gemini", {
 						env = { api_key = "GEMINI_API_KEY" },
@@ -99,6 +102,11 @@ return {
 					})
 				end,
 			},
+            acp = {
+                opts = {
+                    show_presets = true
+                }
+            }
 		},
 		interactions = {
 			chat = {

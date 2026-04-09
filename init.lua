@@ -24,6 +24,7 @@ require("lazy").setup({
 	require("plugins.core"),
 	require("plugins.dap"),
 	require("plugins.flutter"),
+	require("plugins.fold"),
 	require("plugins.git"),
 	require("plugins.illuminate"),
 	require("plugins.lint"),
