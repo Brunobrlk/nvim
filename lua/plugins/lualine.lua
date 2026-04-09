@@ -39,8 +39,14 @@ return {
 					},
 					"filetype",
 					{
-						require("noice").api.statusline.mode.get,
-						cond = require("noice").api.statusline.mode.has,
+						function()
+							local fidget = require("fidget.notification")
+							local items = fidget.poll_notifications("fidget")
+							if items and #items > 0 then
+								return items[1].message
+							end
+							return ""
+						end,
 						color = { fg = "#ff9e64" },
 					},
 				},

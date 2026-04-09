@@ -19,9 +19,7 @@ return {
 		},
 		lsp = {
 			progress = {
-				enabled = true,
-				format = "lsp_progress",
-				format_done = "lsp_progress_done",
+				enabled = false,
 			},
 			hover = {
 				enabled = true,

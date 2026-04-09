@@ -23,6 +23,7 @@ require("lazy").setup({
 	require("plugins.conform"),
 	require("plugins.core"),
 	require("plugins.dap"),
+	require("plugins.fidget"),
 	require("plugins.flutter"),
 	require("plugins.fold"),
 	require("plugins.git"),
