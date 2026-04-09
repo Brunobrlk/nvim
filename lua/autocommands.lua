@@ -12,8 +12,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.api.nvim_create_autocmd("FileType", {
 	callback = function(event)
 		require("keymaps").setup_language_keymaps(event.buf)
-
-		if event.match == "codecompanion" then
+		if event.match == "codecompanion" or event.match == "codecompanion_cli" then
 			vim.opt_local.number = false
 			vim.opt_local.relativenumber = false
 		end

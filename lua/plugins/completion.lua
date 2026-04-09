@@ -62,19 +62,18 @@ return {
 			["<C-p>"] = { "select_prev", "snippet_backward", "fallback" },
 			["<Tab>"] = {
 				function(cmp)
-					-- Check for supermaven ghost text first
 					local ok, supermaven = pcall(require, "supermaven-nvim.completion_preview")
 					if ok and supermaven.has_suggestion() then
-						return false -- let supermaven handle it
+						return false
 					end
 
-					-- Accept blink-cmp suggestion if menu is visible with a selected item
 					if cmp.is_menu_visible() then
 						return cmp.accept()
 					end
 
 					return false
 				end,
+				"fallback",
 			},
 			["<C-y>"] = {
 				function(cmp)

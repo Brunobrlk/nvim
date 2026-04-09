@@ -17,11 +17,6 @@ local opts = utils.opts
 map({ "n", "v" }, "<Space>", "<Nop>", { silent = true }) -- Disable space, it's leader
 imap("jk", "<ESC>", "Exit Insert Mode")
 
-nmap("<C-k>", "<cmd>wincmd k<cr>", "Window up")
-nmap("<C-j>", "<cmd>wincmd j<cr>", "Window down")
-nmap("<C-h>", "<cmd>wincmd h<cr>", "Window left")
-nmap("<C-l>", "<cmd>wincmd l<cr>", "Window right")
-
 nmap("<leader>e", "<cmd>Neotree toggle<cr>", "Explorer")
 nmap("<leader>h", "<cmd>nohlsearch<CR>", "No highlight")
 nmap("<leader>q", "<cmd>quit<cr>", "Quit")
@@ -71,10 +66,10 @@ vmap("<M-k>", function()
 end)
 
 -- TmuxNavigator
-nmap("<C-h>", "<cmd>TmuxNavigateLeft<CR>")
-nmap("<C-j>", "<cmd>TmuxNavigateDown<CR>")
-nmap("<C-k>", "<cmd>TmuxNavigateUp<CR>")
-nmap("<C-l>", "<cmd>TmuxNavigateRight<CR>")
+nmap("<C-h>", "<cmd>TmuxNavigateLeft<CR>", "Window left")
+nmap("<C-j>", "<cmd>TmuxNavigateDown<CR>", "Window down")
+nmap("<C-k>", "<cmd>TmuxNavigateUp<CR>", "Window up")
+nmap("<C-l>", "<cmd>TmuxNavigateRight<CR>", "Window right")
 
 -- ToggleTerm
 nmap("<M-1>", "<cmd>1ToggleTerm direction=horizontal<CR>", "Terminal 1 (horizontal)")
@@ -85,6 +80,11 @@ tmap("<M-2>", [[<C-\><C-n><cmd>2ToggleTerm direction=vertical<CR>]], "Terminal 2
 
 nmap("<M-3>", "<cmd>3ToggleTerm direction=float<CR>", "Terminal 3 (float)")
 tmap("<M-3>", [[<C-\><C-n><cmd>3ToggleTerm direction=float<CR>]], "Terminal 3 (float)")
+
+tmap("<C-h>", [[<C-\><C-n><cmd>TmuxNavigateLeft<CR>]], "Window left")
+tmap("<C-j>", [[<C-\><C-n><cmd>TmuxNavigateDown<CR>]], "Window down")
+tmap("<C-k>", [[<C-\><C-n><cmd>TmuxNavigateUp<CR>]], "Window up")
+tmap("<C-l>", [[<C-\><C-n><cmd>TmuxNavigateRight<CR>]], "Window right")
 
 -- ======================
 -- [A]I
