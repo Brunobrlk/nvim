@@ -10,27 +10,16 @@ return {
 	opts = { -- defaults: https://github.com/olimorris/codecompanion.nvim/blob/main/lua/codecompanion/config.lua
 		adapters = {
 			http = {
-                opts = {
-                    show_presets = false
-                },
-				gemini = function()
+				opts = { show_presets = false },
+				gemini = function() -- Model-dependent
 					return require("codecompanion.adapters").extend("gemini", {
 						env = { api_key = "GEMINI_API_KEY" },
 						schema = {
-							model = {
-								default = "gemini-3-flash-preview",
-								choices = {
-									"gemini-3-flash-preview",
-									"gemini-2.5-pro",
-									"gemini-2.5-flash",
-									"gemini-2.5-flash-lite",
-									"gemini-2.5-flash-lite-preview-09-2025",
-								},
-							},
+							model = { default = "gemini-3-flash-preview" },
 						},
 					})
 				end,
-				ollama_remote = function()
+				ollama_remote = function() -- GPU time/week (No specific value)
 					return require("codecompanion.adapters").extend("ollama", {
 						env = {
 							url = "https://ollama.com",
@@ -54,7 +43,7 @@ return {
 						},
 					})
 				end,
-				openrouter = function()
+				openrouter = function() -- 50 reqs/day
 					return require("codecompanion.adapters").extend("openai_compatible", {
 						env = {
 							url = "https://openrouter.ai/api",
@@ -65,6 +54,7 @@ return {
 							model = {
 								default = "minimax/minimax-m2.5:free",
 								choices = {
+									"google/gemma-4-31b-it:free",
 									"minimax/minimax-m2.5:free",
 									"qwen/qwen3-coder:free",
 									"openai/gpt-oss-120b:free",
@@ -77,7 +67,7 @@ return {
 						},
 					})
 				end,
-				groq = function()
+				groq = function() -- Model-dependent, reqs/day and tokens/day
 					return require("codecompanion.adapters").extend("openai_compatible", {
 						env = {
 							url = "https://api.groq.com/openai",
@@ -86,7 +76,7 @@ return {
 							models_endpoint = "/v1/models",
 						},
 						schema = {
-							model = { default = "openai/gpt-oss-20b" },
+							model = { default = "llama-3.3-70b-versatile" }, -- 1k/100k reqs,tokens/day
 						},
 					})
 				end,
@@ -102,19 +92,26 @@ return {
 					})
 				end,
 			},
-            acp = {
-                opts = {
-                    show_presets = true
-                }
-            }
+			acp = {
+				opts = { show_presets = false },
+				gemini_cli = function()
+					return require("codecompanion.adapters").extend("gemini_cli", {})
+				end,
+				codex = function()
+					return require("codecompanion.adapters").extend("codex", {})
+				end,
+				opencode = function()
+					return require("codecompanion.adapters").extend("opencode", {})
+				end,
+			},
 		},
-		interactions = {
+		interactions = { -- same as strategies(old)
 			chat = {
 				adapter = "gemini",
 				editor_context = {
 					["buffer"] = {
 						opts = {
-							default_params = "diff", -- Always sync the buffer by sharing its "diff"
+							default_params = "diff",
 						},
 					},
 				},
@@ -129,15 +126,13 @@ return {
 				},
 			},
 			inline = { adapter = "ollama_remote_code" },
-			cmd = { adapter = "ollama_remote" },
+			cmd = { adapter = "groq" },
 			cli = {
-				agent = "codex",
+				agent = "opencode",
 				agents = {
-					codex = {
-						cmd = "codex",
-						args = {},
-						description = "OpenAI Codex CLI",
-					},
+					codex = { cmd = "codex" },
+					opencode = { cmd = "opencode" },
+					gemini = { cmd = "gemini" },
 				},
 			},
 		},
@@ -159,6 +154,12 @@ return {
 				start_in_insert_mode = false,
 				intro_message = "CodeCompanion: ask, edit, execute | ? help | /prompts | #context | @tools | /acp_slash_cmd ",
 			},
+            cli = {
+                window = {
+                    layout = "vertical",
+                    width = 0.3
+                }
+            },
 			diff = {
 				enabled = true,
 				threshold_for_chat = 6, -- At or below this diff size, always display the diff in the chat buffer

@@ -1,10 +1,10 @@
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(event)
-        local client = vim.lsp.get_client_by_id(event.data.client_id)
+		local client = vim.lsp.get_client_by_id(event.data.client_id)
 		client.server_capabilities.documentFormattingProvider = false
 		client.server_capabilities.documentRangeFormattingProvider = false
 
-        local bufnr = event.buf
+		local bufnr = event.buf
 		require("keymaps").setup_lsp_keymaps(bufnr, client)
 	end,
 })
@@ -12,9 +12,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.api.nvim_create_autocmd("FileType", {
 	callback = function(event)
 		require("keymaps").setup_language_keymaps(event.buf)
-		if event.match == "codecompanion" or event.match == "codecompanion_cli" then
-			vim.opt_local.number = false
-			vim.opt_local.relativenumber = false
+	end,
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+	callback = function()
+		if vim.bo.buftype == "terminal" then
+            local optl = vim.opt_local
+
+			optl.number = false
+			optl.relativenumber = false
+			optl.signcolumn = "no"
+			optl.winfixwidth = true
 		end
 	end,
 })
