@@ -12,6 +12,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.api.nvim_create_autocmd("FileType", {
 	callback = function(event)
 		require("keymaps").setup_language_keymaps(event.buf)
+
+        if event.match == "codecompanion" then
+            local optl = vim.opt_local
+
+			optl.number = false
+			optl.relativenumber = false
+			optl.signcolumn = "no"
+			optl.winfixwidth = true
+        end
 	end,
 })
 

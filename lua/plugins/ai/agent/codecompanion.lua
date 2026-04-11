@@ -153,13 +153,16 @@ return {
 				show_tools_processing = true,
 				start_in_insert_mode = false,
 				intro_message = "CodeCompanion: ask, edit, execute | ? help | /prompts | #context | @tools | /acp_slash_cmd ",
+				window = {
+					width = 0.4,
+				},
 			},
-            cli = {
-                window = {
-                    layout = "vertical",
-                    width = 0.3
-                }
-            },
+			cli = {
+				window = {
+					layout = "vertical",
+					width = 0.3,
+				},
+			},
 			diff = {
 				enabled = true,
 				threshold_for_chat = 6, -- At or below this diff size, always display the diff in the chat buffer

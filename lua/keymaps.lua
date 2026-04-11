@@ -92,8 +92,8 @@ tmap("<C-l>", [[<C-\><C-n><cmd>TmuxNavigateRight<CR>]], "Window right")
 nmap("<leader>aa", "<cmd>CodeCompanionActions<cr>", "Actions")
 nmap("<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", "Chat")
 nmap("<leader>ao", function()
-  local opencode = require("toggleterm.terminal").Terminal:new({ cmd = "opencode", direction = "vertical" })
-  opencode:toggle()
+	local opencode = require("toggleterm.terminal").Terminal:new({ cmd = "opencode", direction = "vertical" })
+	opencode:toggle()
 end, "OpenCode")
 nmap("<leader>at", "<cmd>CodeCompanionCLI<cr>", "Terminal")
 
@@ -106,11 +106,9 @@ vmap("<leader>af", "<cmd>CodeCompanionChat /fix<cr>", "Fix")
 -- ======================
 -- [B]uffer Actions
 -- ======================
-nmap(
-	"<leader>bf",
-	"<cmd>lua require('conform').format({ async = true, lsp_fallback = true })<cr>",
-	"[B]uffer [F]ormat (Conform)"
-)
+nmap("<leader>bf", function()
+	require("conform").format({ async = true })
+end, "Format (Conform)")
 nmap("<leader>bh", "<cmd>BufferLineCloseLeft<CR>", "Close Left")
 nmap("<leader>bl", "<cmd>BufferLineCloseRight<CR>", "Close Right")
 
