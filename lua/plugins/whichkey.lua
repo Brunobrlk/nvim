@@ -44,6 +44,7 @@ return {
 			{ "<leader>s", group = "Search" },
 			{ "<leader>g", group = "Git", mode = { "n", "v" } },
 			{ "<leader>l", group = "LSP" , mode = { "n", "v" } },
+			{ "<leader>n", group = "Noice" , mode = { "n", "v" } },
 			{ "<leader>p", group = "Persistence" },
 			{ "<leader>r", group = "Run" },
 			{ "<leader>S", group = "Sudo" },

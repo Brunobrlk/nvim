@@ -162,11 +162,20 @@ nmap("<leader>gw", "<cmd>lua require('gitsigns').toggle_word_diff()<CR>", "Toggl
 map({ "o", "x" }, "gh", "<cmd>lua require('gitsigns').select_hunk()<CR>", opts("Select Hunk"))
 
 -- ======================
+-- [N]oice
+-- ======================
+nmap("<leader>na", "<cmd>NoiceAll<cr>", "All Messages")
+nmap("<leader>nn", "<cmd>NoiceLast<cr>", "Last Message")
+nmap("<leader>nd", "<cmd>NoiceDismiss<cr>", "Dismiss")
+nmap("<leader>ne", "<cmd>NoiceErrors<cr>", "Errors")
+nmap("<leader>nh", "<cmd>NoiceHistory<cr>", "History")
+
+-- ======================
 -- [P]ersistence
 -- ======================
-nmap("<leader>pa", "<cmd>lua require('persistence').select()<cr>", "[A]ll Sessions")
-nmap("<leader>pc", "<cmd>lua require('persistence').load()<cr>", "[C]urrent dir")
-nmap("<leader>pl", "<cmd>lua require('persistence').load({ last = true })<cr>", "[L]ast")
+nmap("<leader>pa", "<cmd>lua require('persistence').select()<cr>", "All Sessions")
+nmap("<leader>pc", "<cmd>lua require('persistence').load()<cr>", "Current dir")
+nmap("<leader>pl", "<cmd>lua require('persistence').load({ last = true })<cr>", "Last")
 
 -- ======================
 -- [R]un
@@ -263,27 +272,27 @@ nmap("<leader>Sr", "<cmd>SudaRead<CR>", "Open with Sudo")
 -- ======================
 -- [S]earch Telescope
 -- ======================
-nmap("<leader>sb", "<cmd>lua require('telescope.builtin').buffers()<CR>", "[S]earch [B]uffers")
-nmap("<leader>sc", "<cmd>Telescope commands<cr>", "[S]earch [C]ommands")
-nmap("<leader>sd", "<cmd>lua require('telescope.builtin').diagnostics()<CR>", "[S]earch [D]iagnostics")
-nmap("<leader>sf", "<cmd>lua require('telescope.builtin').find_files()<CR>", "[S]earch [F]iles")
-nmap("<leader>sh", "<cmd>lua require('telescope.builtin').help_tags()<CR>", "[S]earch [H]elp")
-nmap("<leader>sH", "<cmd>Telescope highlights<cr>", "[S]earch [H]ighlight Groups")
-nmap("<leader>sk", "<cmd>lua require('telescope.builtin').keymaps()<CR>", "[S]earch [K]eymaps")
-nmap("<leader>sl", "<cmd>lua require('telescope.builtin').resume()<CR>", "[S]earch [L]ast Picker")
-nmap("<leader>sM", "<cmd>Telescope man_pages<cr>", "[Search] [M]an Pages")
-nmap("<leader>sr", "<cmd>lua require('telescope.builtin').oldfiles()<CR>", "[S]earch [R]ecent Files")
-nmap("<leader>sR", "<cmd>Telescope registers<cr>", "[S]earch [R]egisters")
-nmap("<leader>ss", "<cmd>Telescope lsp_document_symbols<cr>", "[Search] [S]ymbols")
-nmap("<leader>st", "<cmd>lua require('telescope.builtin').live_grep()<CR>", "[S]earch [T]ext")
-nmap("<leader>sT", "<cmd>lua require('telescope.builtin').builtin()<CR>", "[S]earch [T]elescope")
-nmap("<leader>sw", "<cmd>lua require('telescope.builtin').grep_string()<CR>", "[S]earch current [W]ord")
-nmap("<leader>su", "<cmd>Telescope undo<cr>", "[S]earch [U]ndo History")
+nmap("<leader>sb", "<cmd>lua require('telescope.builtin').buffers()<CR>", "Search Buffers")
+nmap("<leader>sc", "<cmd>Telescope commands<cr>", "Search Commands")
+nmap("<leader>sd", "<cmd>lua require('telescope.builtin').diagnostics()<CR>", "Search Diagnostics")
+nmap("<leader>sf", "<cmd>lua require('telescope.builtin').find_files()<CR>", "Search Files")
+nmap("<leader>sh", "<cmd>lua require('telescope.builtin').help_tags()<CR>", "Search Help")
+nmap("<leader>sH", "<cmd>Telescope highlights<cr>", "Search Highlight Groups")
+nmap("<leader>sk", "<cmd>lua require('telescope.builtin').keymaps()<CR>", "Search Keymaps")
+nmap("<leader>sl", "<cmd>lua require('telescope.builtin').resume()<CR>", "Search Last Picker")
+nmap("<leader>sM", "<cmd>Telescope man_pages<cr>", "Search Man Pages")
+nmap("<leader>sr", "<cmd>lua require('telescope.builtin').oldfiles()<CR>", "Search Recent Files")
+nmap("<leader>sR", "<cmd>Telescope registers<cr>", "Search Registers")
+nmap("<leader>ss", "<cmd>Telescope lsp_document_symbols<cr>", "Search Symbols")
+nmap("<leader>st", "<cmd>lua require('telescope.builtin').live_grep()<CR>", "Search Text")
+nmap("<leader>sT", "<cmd>lua require('telescope.builtin').builtin()<CR>", "Search Telescope")
+nmap("<leader>sw", "<cmd>lua require('telescope.builtin').grep_string()<CR>", "Search current Word")
+nmap("<leader>su", "<cmd>Telescope undo<cr>", "Search Undo History")
 nmap("<leader>sn", function()
 	require("telescope.builtin").find_files({
 		cwd = vim.fn.stdpath("config"),
 	})
-end, "[S]earch [N]eovim files")
+end, "Search Neovim files")
 
 -- ======================
 -- [T]elescope Integrations
