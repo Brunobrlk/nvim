@@ -123,6 +123,16 @@ nmap("<leader>c", function()
 end, "Close buffer")
 
 -- ======================
+-- [C]olorscheme
+-- ======================
+vim.keymap.set("n", "<leader>Ct", function()
+	local c = require("catppuccin")
+	c.options.transparent_background = not c.options.transparent_background
+	c.compile()
+	vim.cmd("colorscheme catppuccin")
+end, { desc = "Toggle Transparency" })
+
+-- ======================
 -- [G]itsigns
 -- ======================
 nmap(
@@ -160,6 +170,25 @@ nmap("<leader>gw", "<cmd>lua require('gitsigns').toggle_word_diff()<CR>", "Toggl
 
 -- Text object
 map({ "o", "x" }, "gh", "<cmd>lua require('gitsigns').select_hunk()<CR>", opts("Select Hunk"))
+
+-- ======================
+-- [L]azy
+-- ======================
+nmap("<leader>Lu", "<cmd>Lazy update<cr>", "Update")
+nmap("<leader>Ls", "<cmd>Lazy sync<cr>", "Sync")
+nmap("<leader>Lh", "<cmd>Lazy home<cr>", "Home")
+nmap("<leader>Ll", "<cmd>Lazy log<cr>", "Log")
+nmap("<leader>Lp", "<cmd>Lazy profile<cr>", "Profile")
+nmap("<leader>Lr", "<cmd>Lazy restore<cr>", "Restore")
+
+-- ======================
+-- [M]arkdown
+-- ======================
+local markdown_mappings = function()
+	nmap("<leader>mr", "<cmd>MarkdownPreview<cr>", "Run Preview")
+	nmap("<leader>ms", "<cmd>MarkdownPreviewStop<cr>", "Stop Preview")
+	nmap("<leader>mt", "<cmd>MarkdownPreview<cr>", "Toggle Preview")
+end
 
 -- ======================
 -- [N]oice
@@ -204,6 +233,7 @@ end
 local languages_registry = { -- Trigger keymaps per filetype
 	python = python_mappings,
 	dart = flutter_mappings,
+	markdown = markdown_mappings,
 }
 
 -- DAP (Debug)

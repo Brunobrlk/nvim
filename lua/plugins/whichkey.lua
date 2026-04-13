@@ -41,9 +41,12 @@ return {
 		spec = {
 			{ "<leader>a", group = "AI", mode = { "n", "v" } },
 			{ "<leader>b", group = "Buffer" },
+			{ "<leader>C", group = "Colorscheme" },
 			{ "<leader>s", group = "Search" },
 			{ "<leader>g", group = "Git", mode = { "n", "v" } },
 			{ "<leader>l", group = "LSP" , mode = { "n", "v" } },
+			{ "<leader>L", group = "Lazy" },
+			{ "<leader>m", group = "Markdown" , mode = { "n", "v" } },
 			{ "<leader>n", group = "Noice" , mode = { "n", "v" } },
 			{ "<leader>p", group = "Persistence" },
 			{ "<leader>r", group = "Run" },
