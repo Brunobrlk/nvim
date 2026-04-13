@@ -1,7 +1,18 @@
 return {
 	"folke/noice.nvim",
 	event = "VeryLazy",
-	dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
+	dependencies = {
+		"MunifTanjim/nui.nvim",
+		{
+			"rcarriga/nvim-notify",
+			opts = {
+				timeout = 3000,
+				render = "compact",
+				stages = "fade_in_slide_out",
+				top_down = false,
+			},
+		},
+	},
 	opts = {
 		-- Views: popup, split, vsplit, notify, virtualtext, mini, notify_send, cmdline, cmdline_popup, cmdline_output, messages, hover, popupmenu
 		presets = {
@@ -19,13 +30,12 @@ return {
 			backend = "nui",
 		},
 		lsp = {
-			-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-			override = {
+			override = { -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
 				["vim.lsp.util.convert_input_to_markdown_lines"] = true,
 				["vim.lsp.util.stylize_markdown"] = true,
 			},
 			progress = {
-				enabled = false,
+				enabled = true,
 			},
 			hover = {
 				enabled = true,
