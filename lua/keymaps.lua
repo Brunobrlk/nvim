@@ -185,9 +185,9 @@ nmap("<leader>Lr", "<cmd>Lazy restore<cr>", "Restore")
 -- [M]arkdown
 -- ======================
 local markdown_mappings = function()
-	nmap("<leader>mr", "<cmd>MarkdownPreview<cr>", "Run Preview")
+	nmap("<leader>mp", "<cmd>MarkdownPreview<cr>", "Preview")
 	nmap("<leader>ms", "<cmd>MarkdownPreviewStop<cr>", "Stop Preview")
-	nmap("<leader>mt", "<cmd>MarkdownPreview<cr>", "Toggle Preview")
+	nmap("<leader>mt", "<cmd>MarkdownPreviewToggle<cr>", "Toggle Preview")
 end
 
 -- ======================
