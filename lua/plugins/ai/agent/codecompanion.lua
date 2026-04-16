@@ -31,6 +31,19 @@ return {
 						},
 					})
 				end,
+				ollama_local = function()
+					return require("codecompanion.adapters").extend("ollama", {
+						schema = {
+							model = {
+								default = "gemma4-custom:latest",
+								choices = {
+									"gemma4-custom:latest",
+									"phi3:mini",
+								},
+							},
+						},
+					})
+				end,
 				ollama_remote_code = function()
 					return require("codecompanion.adapters").extend("ollama", {
 						env = {
@@ -107,7 +120,7 @@ return {
 		},
 		interactions = { -- same as strategies(old)
 			chat = {
-				adapter = "gemini",
+				adapter = "ollama_remote",
 				editor_context = {
 					["buffer"] = {
 						opts = {
@@ -126,7 +139,7 @@ return {
 				},
 			},
 			inline = { adapter = "ollama_remote_code" },
-			cmd = { adapter = "groq" },
+			cmd = { adapter = "gemini" },
 			cli = {
 				agent = "opencode",
 				agents = {
@@ -152,7 +165,7 @@ return {
 				show_token_count = true,
 				show_tools_processing = true,
 				start_in_insert_mode = false,
-				intro_message = "CodeCompanion: ask, edit, execute | ? help | /prompts | #context | @tools | /acp_slash_cmd ",
+				intro_message = "CodeCompanion: ask, edit, execute | ? help | /prompts | #context | @tools ",
 				window = {
 					width = 0.4,
 				},

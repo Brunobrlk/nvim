@@ -36,7 +36,10 @@ return {
 	},
 	opts = {
 		completion = {
-			documentation = { auto_show = true },
+			documentation = {
+				auto_show = true,
+				auto_show_delay_ms = 200,
+			},
 		},
 		signature = { enabled = false },
 		sources = {
@@ -58,6 +61,7 @@ return {
 			preset = "none",
 			["<Up>"] = { "select_prev", "fallback" },
 			["<Down>"] = { "select_next", "fallback" },
+			["<CR>"] = { "accept", "fallback" },
 			["<C-n>"] = { "select_next", "snippet_forward", "fallback" },
 			["<C-p>"] = { "select_prev", "snippet_backward", "fallback" },
 			["<Tab>"] = {
