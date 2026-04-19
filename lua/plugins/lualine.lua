@@ -53,6 +53,7 @@ return {
 				lualine_x = {
 					"searchcount",
 					avd.android_model,
+					"venv-selector",
 					"encoding",
 					{
 						"lsp_status",

@@ -188,6 +188,9 @@ local markdown_mappings = function()
 	nmap("<leader>mp", "<cmd>MarkdownPreview<cr>", "Preview")
 	nmap("<leader>ms", "<cmd>MarkdownPreviewStop<cr>", "Stop Preview")
 	nmap("<leader>mt", "<cmd>MarkdownPreviewToggle<cr>", "Toggle Preview")
+	nmap("<leader>ms", function()
+		vim.fn.jobstart({ "rclone", "sync", vault, "google-drive:notes", "--update" }, { detach = true })
+	end, "Sync Notes")
 end
 
 -- ======================
@@ -226,6 +229,16 @@ local flutter_mappings = function()
 end
 
 local python_mappings = function()
+	nmap("<leader>rr", function()
+		local terminal = require("toggleterm.terminal").Terminal:new({
+			cmd = (vim.fn.executable("python") == 1 and "python" or "python3") .. " main.py",
+			dir = vim.fn.getcwd(),
+			direction = "float",
+			close_on_exit = false,
+		})
+
+		terminal:toggle()
+	end, "Python: Run main.py")
 	nmap("<leader>rv", "<cmd>VenvSelect<cr>", "Python: Venv select")
 	dap_support()
 end
