@@ -3,7 +3,7 @@ return {
 	event = "VeryLazy",
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
-		{ dir = "~/Development/Projects/lualine-components.nvim" },
+		{ dir = "~/Development/projects/lualine-components.nvim" },
 	},
 	config = function()
 		local avd = require("linecomp.avd")
