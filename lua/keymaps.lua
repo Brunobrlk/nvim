@@ -189,7 +189,8 @@ local markdown_mappings = function()
 	nmap("<leader>ms", "<cmd>MarkdownPreviewStop<cr>", "Stop Preview")
 	nmap("<leader>mt", "<cmd>MarkdownPreviewToggle<cr>", "Toggle Preview")
 	nmap("<leader>ms", function()
-		vim.fn.jobstart({ "rclone", "sync", vault, "google-drive:notes", "--update" }, { detach = true })
+	    vim.notify("Syncing markdown notes...")
+		vim.fn.jobstart({ "rclone", "sync", vim.fn.expand("~/Documents/Vault"), "google-drive:notes", "--update" }, { detach = true })
 	end, "Sync Notes")
 end
 
@@ -228,33 +229,12 @@ local flutter_mappings = function()
 	nmap("<leader>rx", "<cmd>FlutterLogClear<cr>", "Flutter: Log Clear")
 end
 
-local python_mappings = function()
-	nmap("<leader>rr", function()
-		local terminal = require("toggleterm.terminal").Terminal:new({
-			cmd = (vim.fn.executable("python") == 1 and "python" or "python3") .. " main.py",
-			dir = vim.fn.getcwd(),
-			direction = "float",
-			close_on_exit = false,
-		})
-
-		terminal:toggle()
-	end, "Python: Run main.py")
-	nmap("<leader>rv", "<cmd>VenvSelect<cr>", "Python: Venv select")
-	dap_support()
-end
-
-local languages_registry = { -- Trigger keymaps per filetype
-	python = python_mappings,
-	dart = flutter_mappings,
-	markdown = markdown_mappings,
-}
-
 -- DAP (Debug)
 -- Alt + q - Throw Exception = Not Supported
 -- Alt + z - Enable/Disable line breakpoint = Not Supported
 -- Alt + a - View all break points = Not Supported
 -- Alt + f - Mute/Unmute all breakpoints = Not Supported
-function dap_support()
+local function dap_support()
 	-- Step into
 	nmap("<A-w>", function()
 		require("dap").step_into()
@@ -305,6 +285,27 @@ function dap_support()
 		require("dapui").toggle()
 	end, "DAP: Toggle UI")
 end
+
+local python_mappings = function()
+	nmap("<leader>rr", function()
+		local terminal = require("toggleterm.terminal").Terminal:new({
+			cmd = (vim.fn.executable("python") == 1 and "python" or "python3") .. " main.py",
+			dir = vim.fn.getcwd(),
+			direction = "float",
+			close_on_exit = false,
+		})
+
+		terminal:toggle()
+	end, "Python: Run main.py")
+	nmap("<leader>rv", "<cmd>VenvSelect<cr>", "Python: Venv select")
+	dap_support()
+end
+
+local languages_registry = { -- Trigger keymaps per filetype
+	python = python_mappings,
+	dart = flutter_mappings,
+	markdown = markdown_mappings,
+}
 
 -- ======================
 -- [S]udo
@@ -388,6 +389,11 @@ function M.setup_lsp_keymaps(buf, client)
 	lmap("n", "<leader>lS", telescope.lsp_dynamic_workspace_symbols, "Workspace Symbols")
 	lmap("n", "<leader>lt", telescope.lsp_type_definitions, "Type Definition")
 	lmap("n", "gd", vim.lsp.buf.definition, "Goto Definition")
+	lmap("n", "K", vim.lsp.buf.hover, "Hover Documentation")
+	lmap({ "n", "i" }, "gK", vim.lsp.buf.signature_help, "Signature Help")
+	lmap("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end, "Previous Diagnostic")
+	lmap("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end, "Next Diagnostic")
+	lmap("n", "gl", vim.diagnostic.open_float, "Line Diagnostics")
 
 	lmap("n", "<C-b>", vim.lsp.buf.definition, "Go to LSP Definition") -- This was vim.lsp.buf.definition, so kept it
 	-- lmap("n", "<C-p>", "<cmd>lua require('lsp_signature').toggle_float_win()<cr>", { desc = "Toggle LSP Signature Float" })
