@@ -393,7 +393,7 @@ function M.setup_lsp_keymaps(buf, client)
 	lmap({ "n", "i" }, "gK", vim.lsp.buf.signature_help, "Signature Help")
 	lmap("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end, "Previous Diagnostic")
 	lmap("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end, "Next Diagnostic")
-	lmap("n", "gl", vim.diagnostic.open_float, "Line Diagnostics")
+	lmap("n", "ll", vim.diagnostic.open_float, "Line Diagnostics")
 
 	lmap("n", "<C-b>", vim.lsp.buf.definition, "Go to LSP Definition") -- This was vim.lsp.buf.definition, so kept it
 	-- lmap("n", "<C-p>", "<cmd>lua require('lsp_signature').toggle_float_win()<cr>", { desc = "Toggle LSP Signature Float" })
