@@ -8,6 +8,7 @@ return {
 				python = { "ruff" },
 				sh = { "shfmt" },
 				lua = { "stylua" },
+				dart = { "dart_format" },
 				xml = { "xmlformatter" },
 
 				json = { "prettier" },
