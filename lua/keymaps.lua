@@ -194,6 +194,24 @@ local markdown_mappings = function()
 	end, "Sync Notes")
 end
 
+local platformio_mappings = function(buf)
+	local file = vim.api.nvim_buf_get_name(buf)
+	local root = vim.fs.root(file, { "platformio.ini" })
+
+	if not root or vim.fn.exists(":Piocmdf") ~= 2 then
+		return
+	end
+
+	local function buf_nmap(lhs, rhs, desc)
+		map("n", lhs, rhs, opts(desc, { buffer = buf }))
+	end
+
+	buf_nmap("<leader>rr", "<cmd>Piocmdf run<cr>", "PlatformIO: Build")
+	buf_nmap("<leader>ru", "<cmd>Piocmdf run -t upload<cr>", "PlatformIO: Upload")
+	buf_nmap("<leader>rm", "<cmd>Piocmdh run -t monitor<cr>", "PlatformIO: Monitor")
+	buf_nmap("<leader>rc", "<cmd>Piocmdf run -t clean<cr>", "PlatformIO: Clean")
+end
+
 -- ======================
 -- [N]oice
 -- ======================
@@ -302,6 +320,8 @@ local python_mappings = function()
 end
 
 local languages_registry = { -- Trigger keymaps per filetype
+	c = platformio_mappings,
+	cpp = platformio_mappings,
 	python = python_mappings,
 	dart = flutter_mappings,
 	markdown = markdown_mappings,
@@ -419,7 +439,7 @@ function M.setup_language_keymaps(buf)
 		return
 	end
 
-	fn()
+	fn(buf)
 end
 
 return M

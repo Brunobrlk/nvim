@@ -34,6 +34,7 @@ require("lazy").setup({
 	require("plugins.mason"),
 	require("plugins.neotree"),
 	require("plugins.noice"),
+	require("plugins.platformio"),
 	require("plugins.pyvenv"),
 	require("plugins.sessions"),
 	require("plugins.telescope"),
