@@ -109,6 +109,18 @@ vmap("<leader>af", "<cmd>CodeCompanionChat /fix<cr>", "Fix")
 nmap("<leader>bf", function()
 	require("conform").format({ async = true })
 end, "Format (Conform)")
+local function reload_current_buffer()
+	if vim.bo.modified then
+		vim.notify("Buffer has unsaved changes", vim.log.levels.WARN)
+		return
+	end
+
+	vim.cmd("checktime")
+	vim.cmd("edit")
+	vim.notify("Buffer reloaded from disk")
+end
+
+nmap("<leader>bu", reload_current_buffer, "Update from disk")
 nmap("<leader>bh", "<cmd>BufferLineCloseLeft<CR>", "Close Left")
 nmap("<leader>bl", "<cmd>BufferLineCloseRight<CR>", "Close Right")
 
