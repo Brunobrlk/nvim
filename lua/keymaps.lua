@@ -211,7 +211,7 @@ local platformio_mappings = function(buf)
 	local root = vim.fs.root(file, { "platformio.ini" })
 
 	if not root or vim.fn.exists(":Piocmdf") ~= 2 then
-		return
+		return false
 	end
 
 	local function buf_nmap(lhs, rhs, desc)
@@ -222,6 +222,7 @@ local platformio_mappings = function(buf)
 	buf_nmap("<leader>ru", "<cmd>Piocmdf run -t upload<cr>", "PlatformIO: Upload")
 	buf_nmap("<leader>rm", "<cmd>Piocmdh run -t monitor<cr>", "PlatformIO: Monitor")
 	buf_nmap("<leader>rc", "<cmd>Piocmdf run -t clean<cr>", "PlatformIO: Clean")
+	return true
 end
 
 -- ======================
@@ -331,9 +332,28 @@ local python_mappings = function()
 	dap_support()
 end
 
+local cpp_mappings = function(buf)
+	if platformio_mappings(buf) then
+		return
+	end
+
+	nmap("<leader>rr", function()
+		local file = vim.api.nvim_buf_get_name(buf)
+		local filename = vim.fn.fnamemodify(file, ":t")
+		local terminal = require("toggleterm.terminal").Terminal:new({
+			cmd = "buildcpp " .. vim.fn.shellescape(filename),
+			dir = vim.fn.getcwd(),
+			direction = "float",
+			close_on_exit = false,
+		})
+
+		terminal:toggle()
+	end, "C++: Run current file")
+end
+
 local languages_registry = { -- Trigger keymaps per filetype
 	c = platformio_mappings,
-	cpp = platformio_mappings,
+	cpp = cpp_mappings,
 	python = python_mappings,
 	dart = flutter_mappings,
 	markdown = markdown_mappings,
