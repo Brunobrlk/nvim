@@ -351,8 +351,27 @@ local cpp_mappings = function(buf)
 	end, "C++: Run current file")
 end
 
+local c_mappings = function(buf)
+	if platformio_mappings(buf) then
+		return
+	end
+
+	nmap("<leader>rr", function()
+		local file = vim.api.nvim_buf_get_name(buf)
+		local filename = vim.fn.fnamemodify(file, ":t")
+		local terminal = require("toggleterm.terminal").Terminal:new({
+			cmd = "buildc " .. vim.fn.shellescape(filename),
+			dir = vim.fn.getcwd(),
+			direction = "float",
+			close_on_exit = false,
+		})
+
+		terminal:toggle()
+	end, "C: Run current file")
+end
+
 local languages_registry = { -- Trigger keymaps per filetype
-	c = platformio_mappings,
+	c = c_mappings,
 	cpp = cpp_mappings,
 	python = python_mappings,
 	dart = flutter_mappings,
