@@ -14,7 +14,7 @@ return {
 					include = {
 						"c",
 						"cpp",
-						"cmake",
+						"neocmake",
 						"kotlin",
 						"java",
 						"dart",

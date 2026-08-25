@@ -31,8 +31,8 @@ return {
 			lsp = "clangd",
 			clangd_source = "compiledb",
 			picker_backend = "telescope",
-			menu_key = "<leader>rp",
 			menu_name = "PlatformIO",
+            menu_bindings = {},
 			debug = false,
 		})
 	end,

@@ -218,10 +218,15 @@ local platformio_mappings = function(buf)
 		map("n", lhs, rhs, opts(desc, { buffer = buf }))
 	end
 
-	buf_nmap("<leader>rr", "<cmd>Piocmdf run<cr>", "PlatformIO: Build")
-	buf_nmap("<leader>ru", "<cmd>Piocmdf run -t upload<cr>", "PlatformIO: Upload")
-	buf_nmap("<leader>rm", "<cmd>Piocmdh run -t monitor<cr>", "PlatformIO: Monitor")
 	buf_nmap("<leader>rc", "<cmd>Piocmdf run -t clean<cr>", "PlatformIO: Clean")
+	buf_nmap("<leader>rt", "<cmd>PioTermList<cr>", "PlatformIO: Terminals")
+    buf_nmap("<leader>rb", "<cmd>Piocmdf run<cr>", "PlatformIO: Build")
+    buf_nmap("<leader>ru", "<cmd>Piocmdf run -t upload<cr>", "PlatformIO: Upload")
+    buf_nmap("<leader>rm", "<cmd>Piocmdh run -t monitor<cr>", "PlatformIO: Monitor")
+	buf_nmap("<leader>rd", "<cmd>Piocmdf device list<cr>", "PlatformIO: Devices")
+	buf_nmap("<leader>rp", "<cmd>Piocmdf pkg list<cr>", "PlatformIO: Packages")
+	buf_nmap("<leader>rs", "<cmd>Piocmdf pkg update<cr>", "PlatformIO: Update packages")
+	buf_nmap("<leader>rB", "<cmd>Piocmdf run -t compiledb<cr>", "PlatformIO: Build Compiler DB")
 	return true
 end
 

@@ -33,18 +33,18 @@ return {
 
 		vim.lsp.config("*", { capabilities = require("blink.cmp").get_lsp_capabilities() })
 		vim.lsp.enable({
+            "clangd",
+            "neocmake",
+            "jdtls",
+            "kotlin_language_server",
+            -- "kotlin_lsp",
+            "groovyls",
+            "vimls",
+            "jsonls",
+            "yamlls",
+            "lua_ls",
 			"bashls",
-			"clangd",
-			"cmake",
-			"groovyls",
-			"jdtls",
-			"jsonls",
-			-- "kotlin_lsp",
-			"kotlin_language_server",
-			"lua_ls",
-			"vimls",
-			"yamlls",
-			"pyright",
+            "pyright",
 		})
 	end,
 }

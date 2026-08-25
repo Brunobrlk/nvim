@@ -18,7 +18,7 @@ return {
 				ensure_installed = {
 					-- LSP
 					"clangd",
-					"cmake-language-server",
+					"neocmakelsp",
 					"jdtls",
 					-- "kotlin-lsp",
 					"kotlin-language-server",
