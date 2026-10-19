@@ -330,7 +330,7 @@ local python_mappings = function()
 
 		terminal:toggle()
 	end, "Python: Run main.py")
-	nmap("<leader>rv", "<cmd>VenvSelect<cr>", "Python: Venv select")
+	nmap("<leader>lv", "<cmd>VenvSelect<cr>", "Python: Venv select")
 	dap_support()
 end
 
