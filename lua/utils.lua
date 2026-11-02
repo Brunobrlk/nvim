@@ -1,3 +1,5 @@
+-- Central utility functions
+
 local M = {}
 local map = vim.keymap.set
 

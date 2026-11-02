@@ -1,3 +1,5 @@
+-- Filename detection
+
 vim.filetype.add({
     filename = {
         ["Fastfile"]       = "ruby",

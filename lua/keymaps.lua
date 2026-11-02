@@ -1,3 +1,5 @@
+-- Central keymaps definition
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 

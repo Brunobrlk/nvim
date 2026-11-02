@@ -1,37 +1,6 @@
--- local vault = vim.fn.expand("~/Documents/Vault")
-
--- vim.api.nvim_create_autocmd("BufEnter", {
--- 	callback = function(args)
--- 		if vim.bo.buftype == "terminal" then
--- 			local optl = vim.opt_local
---
--- 			optl.number = false
--- 			optl.relativenumber = false
--- 			optl.signcolumn = "no"
--- 			optl.winfixwidth = true
--- 			return
--- 		end
--- 		local cwd = vim.fs.normalize(vim.fn.getcwd())
---
--- 		if cwd:find(vault, 1, true) == 1 then
--- 			vim.fn.jobstart({ "rclone", "sync", "google-drive:notes", vault, "--update" }, { detach = true })
--- 		end
--- 	end,
--- })
-
--- vim.api.nvim_create_autocmd("VimLeavePre", {
--- 	callback = function()
--- 		local cwd = vim.fs.normalize(vim.fn.getcwd())
---
--- 		if cwd:find(vault, 1, true) == 1 then
--- 			vim.fn.jobstart(
--- 				{ "rclone", "sync", vault, "google-drive:notes", "--update" },
--- 				{ detach = false }
--- 			)
--- 		end
--- 	end,
--- })
-
+-- ======================
+-- LSP
+-- ======================
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(event)
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -43,8 +12,25 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
+-- ======================
+-- FileType
+-- ======================
+local indent_width = {
+	kotlin = 4,
+	groovy = 4,
+	cs = 4,
+	lua = 4,
+	python = 4,
+}
+
 vim.api.nvim_create_autocmd("FileType", {
 	callback = function(event)
+		local ft = event.match
+
+		if indent_width[ft] then
+			vim.bo[event.buf].shiftwidth = indent_width[ft]
+		end
+
 		require("keymaps").setup_language_keymaps(event.buf)
 
 		if event.match == "codecompanion" then
@@ -63,12 +49,18 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+-- ======================
+-- Diagnostics
+-- ======================
 vim.api.nvim_create_user_command("DiagInfo", function()
 	vim.diagnostic.open_float({
 		source = true,
 	})
 end, {})
 
+-- ======================
+-- VimEnter
+-- ======================
 vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function()
 		vim.schedule(function()
@@ -79,6 +71,9 @@ vim.api.nvim_create_autocmd("VimEnter", {
 	end,
 })
 
+-- ======================
+-- User events for plugins
+-- ======================
 vim.api.nvim_create_autocmd("User", {
 	pattern = "PersistenceLoadPost",
 	callback = function()
