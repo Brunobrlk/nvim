@@ -79,11 +79,11 @@ opt.completeopt = { "menu", "menuone", "noselect" }
 -- whitespace format
 opt.list = true
 opt.listchars = {
-	tab = "»·",
-	trail = "·",
-	extends = "→",
-	precedes = "←",
-	nbsp = "␣",
+    tab = "»·",
+    trail = "·",
+    extends = "→",
+    precedes = "←",
+    nbsp = "␣",
 }
 
 opt.confirm = true -- confirm before closing unsaved buffers
