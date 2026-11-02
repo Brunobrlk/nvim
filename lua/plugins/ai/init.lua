@@ -1,4 +1,8 @@
-require("utils").load_secrets("~/.local/share/secure/ai-keys")
+local ok = require("utils").load_secrets("~/.local/share/secure/ai-keys")
+
+if not ok then
+    return {}
+end
 
 local ghost_completion_provider = "supermaven" -- supermaven | copilot | windsurf
 local agent_chat_provider = "codecompanion" -- codecompanion | avante | parrot

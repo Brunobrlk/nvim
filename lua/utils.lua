@@ -7,13 +7,13 @@ local _secrets_loaded = false
 
 function M.load_secrets(path)
 	if _secrets_loaded then
-		return
+		return true
 	end
 	path = vim.fn.expand(path or "~/.local/share/secure/env")
 	local file = io.open(path, "r")
 	if not file then
 		vim.notify("[utils] secrets not found: " .. path, vim.log.levels.WARN)
-		return
+		return false
 	end
 	for line in file:lines() do
 		if not line:match("^%s*#") and not line:match("^%s*$") then
@@ -26,6 +26,7 @@ function M.load_secrets(path)
 	end
 	file:close()
 	_secrets_loaded = true
+    return true
 end
 
 -- ── Keymap helpers ───────────────────────────────────────────────────────────
