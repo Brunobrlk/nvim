@@ -89,23 +89,6 @@ tmap("<C-k>", [[<C-\><C-n><cmd>TmuxNavigateUp<CR>]], "Window up")
 tmap("<C-l>", [[<C-\><C-n><cmd>TmuxNavigateRight<CR>]], "Window right")
 
 -- ======================
--- [A]I
--- ======================
-nmap("<leader>aa", "<cmd>CodeCompanionActions<cr>", "Actions")
-nmap("<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", "Chat")
-nmap("<leader>ao", function()
-    local opencode = require("toggleterm.terminal").Terminal:new({ cmd = "opencode", direction = "vertical" })
-    opencode:toggle()
-end, "OpenCode")
-nmap("<leader>at", "<cmd>CodeCompanionCLI<cr>", "Terminal")
-
-nvmap("<leader>ai", "<cmd>CodeCompanion<cr>", "Inline")
-
-vmap("<leader>ab", "<cmd>CodeCompanionChat Add<cr>", "Add buffer selection to Chat")
-vmap("<leader>ae", "<cmd>CodeCompanionChat /explain<cr>", "Explain")
-vmap("<leader>af", "<cmd>CodeCompanionChat /fix<cr>", "Fix")
-
--- ======================
 -- [B]uffer Actions
 -- ======================
 nmap("<leader>bf", function()

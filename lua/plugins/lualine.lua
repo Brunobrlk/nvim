@@ -3,15 +3,8 @@ return {
     event = "VeryLazy",
     dependencies = {
         "nvim-tree/nvim-web-devicons",
-        "Brunobrlk/lualine-components.nvim",
     },
     config = function()
-        local avd = require("linecomp.avd")
-        local companion = require("linecomp.codecompanion")
-        local dev = require("linecomp.dev")
-        local companion_spinner = require("linecomp.codecompanion_spinner")
-        local macro_recording = require("linecomp.macros")
-
         require("lualine").setup({
             options = {
                 theme = "auto",
@@ -44,7 +37,6 @@ return {
             },
             sections = {
                 lualine_a = {
-                    { dev.dev_indicator, color = { fg = "#000000", bg = "#A6E3A1", gui = "bold" } },
                     "mode",
                 },
                 lualine_b = { "branch" },
@@ -66,14 +58,9 @@ return {
                         end,
                         color = { fg = "#ff9e64" },
                     },
-                    {
-                        macro_recording.update_status,
-                        color = { fg = "#fab387", gui = "bold" },
-                    },
                 },
                 lualine_x = {
                     "searchcount",
-                    avd.android_model,
                     "venv-selector",
                     "encoding",
                     {
@@ -89,7 +76,6 @@ return {
                     },
                 },
                 lualine_z = { "progress", "location" },
-                lualine_y = { companion_spinner, companion.codecompanion_tokens, companion.codecompanion_model },
             },
             tabline = {},
             extensions = {},
