@@ -3,6 +3,6 @@
 
 set -euo pipefail
 
-rm -rf ~/.local/share/nvim-minimal
-rm -rf ~/.local/state/nvim-minimal
-rm -rf ~/.cache/nvim-minimal
+rm -rf ~/.local/share/nvim-server
+rm -rf ~/.local/state/nvim-server
+rm -rf ~/.cache/nvim-server

@@ -1,18 +1,4 @@
 -- ======================
--- LSP
--- ======================
-vim.api.nvim_create_autocmd("LspAttach", {
-    callback = function(event)
-        local client = vim.lsp.get_client_by_id(event.data.client_id)
-        client.server_capabilities.documentFormattingProvider = false
-        client.server_capabilities.documentRangeFormattingProvider = false
-
-        local bufnr = event.buf
-        require("keymaps").setup_lsp_keymaps(bufnr, client)
-    end,
-})
-
--- ======================
 -- FileType
 -- ======================
 local indent_width = {
@@ -32,20 +18,6 @@ vim.api.nvim_create_autocmd("FileType", {
         end
 
         require("keymaps").setup_language_keymaps(event.buf)
-
-        if event.match == "codecompanion" then
-            local optl = vim.opt_local
-
-            optl.number = false
-            optl.relativenumber = false
-            optl.signcolumn = "no"
-            optl.winfixwidth = true
-        elseif event.match == "markdown" then
-            local optl = vim.opt_local
-
-            optl.spell = true
-            optl.spelllang = { "en" }
-        end
     end,
 })
 
