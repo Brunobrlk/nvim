@@ -1,12 +1,11 @@
 return {
     "nvim-neo-tree/neo-tree.nvim",
-    event = "VimEnter",
-    branch = "v3.x",
     dependencies = {
         "nvim-lua/plenary.nvim",
         "MunifTanjim/nui.nvim",
         "nvim-tree/nvim-web-devicons",
     },
+    branch = "main",
     cmd = "Neotree",
     config = function()
         require("neo-tree").setup({
@@ -49,6 +48,9 @@ return {
                     expander_collapsed = "",
                     expander_expanded = "",
                 },
+            },
+            clipboard = {
+                sync = "universal",
             },
             filesystem = {
                 filtered_items = {
